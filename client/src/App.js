@@ -7,6 +7,8 @@ import AUTH_SERVICE from './services/AuthService';
 
 import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
+import Home from './components/Home/index'
+import Navbar from './components/NavBar/index'
 
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -37,7 +39,7 @@ export default class App extends React.Component {
       <div className='App'>
         <BrowserRouter>
           <nav>
-            <NavBar currentUser={this.state.currentUser} onUserChange={this.updateUser} />
+            <Navbar currentUser={this.state.currentUser} onUserChange={this.updateUser} />
           </nav>
           <Switch>
             {/* <Route path='/somePage' component={someComponent} /> */}
