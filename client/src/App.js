@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -9,7 +8,7 @@ import CARD_SERVICE from './services/CardService'
 import Signup from './components/Authentication/Signup/signup';
 import Login from './components/Authentication/Login/login';
 import Navbar from './components/NavBar/navbar'
-import Board from './components/Board/Board'
+import Board from './components/Board/board'
 
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -47,14 +46,14 @@ export default class App extends React.Component {
           </nav>
           <Switch>
             {/* <Route path='/somePage' component={someComponent} /> */}
-            <Route path='/signup-page' render={props => <Signup {...props} onUserChange={this.updateUser} />} />
-            <Route path='/login-page' render={props => <Login {...props} onUserChange={this.updateUser} />} />
+            <Route path='/signup' render={props => <Signup {...props} onUserChange={this.updateUser} />} />
+            <Route path='/login' render={props => <Login {...props} onUserChange={this.updateUser} />} />
 
           {this.state.currentUser && 
           (<ProtectedRoute
               path='/'
               authorized={this.state.currentUser}
-              redirect={'/signup-page'}
+              redirect={'/signup'}
               render={props => <Board {...props} currentUser={this.state.currentUser} cards={this.state.cards} />}
             />)
             }

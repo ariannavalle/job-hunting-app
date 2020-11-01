@@ -11,21 +11,21 @@ const saltRounds = 10;
 const routeGuard = require('../configs/route-guard.config');
 
 router.post('/api/signup', (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { name, email, password } = req.body;
 
-  if (!username || !email || !password) {
+  if (!name || !email || !password) {
     res.status(401).json({
-      message: 'All fields are mandatory. Please provide username, email and password.'
+      message: 'All fields are mandatory. Please provide name, email, and password.'
     });
 
     return;
   }
 
-  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  // const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  const regex = /(?=.*\d)(?=.*[a-z]).{6,}/;
   if (!regex.test(password)) {
     res.status(500).json({
-      message:
-        'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.'
+      message: ["Password Criteria:", "• Must be at least 6 characters", "• Must contain at least 1 number (0-9)", "• Must contain at least 1 letter (a-z)"]
     });
     return;
   }
@@ -35,16 +35,16 @@ router.post('/api/signup', (req, res, next) => {
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
       return User.create({
-        username,
+        name,
         email,
         passwordHash: hashedPassword
       });
     })
     .then(user => {
       req.login(user, err => {
-        if (err) return res.status(500).json({ message: 'Something went wrong with login.' });
+        if (err) return res.status(500).json({ message: 'Login failed.' });
         user.passwordHash = undefined;
-        res.status(200).json({ message: 'Login successful!', user });
+        res.status(200).json({ message: 'Login successful.', user });
       });
     })
     .catch(err => {
@@ -52,7 +52,7 @@ router.post('/api/signup', (req, res, next) => {
         res.status(500).json({ message: err.message });
       } else if (err.code === 11000) {
         res.status(500).json({
-          message: 'Username and email need to be unique. Either username or email is already used.'
+          message: 'Email is already in use.'
         });
       } else {
         next(err);

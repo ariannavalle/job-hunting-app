@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Board() {
+export default function Board({currentUser, cards}) {
     return (
         <div>
-            This is my board
+            This is {`${currentUser.name}'s`} board
         </div>
     )
 }

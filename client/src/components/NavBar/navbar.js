@@ -23,8 +23,8 @@ const NavBar = props => {
         </>
       )) || (
         <>
-          <Link to='/signup-page'>Signup</Link>
-          <Link to='/login-page'>Login</Link>
+          <Link to='/signup'>Signup</Link>
+          <Link to='/login'>Login</Link>
         </>
       )}
     </nav>

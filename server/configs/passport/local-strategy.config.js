@@ -14,12 +14,12 @@ passport.use(
       User.findOne({ email })
         .then(userFromDB => {
           if (!userFromDB) {
-            next(null, false, { message: 'Incorrect email.' });
+            next(null, false, { message: 'Invalid credentials.' });
             return;
           }
 
           if (!bcryptjs.compareSync(password, userFromDB.passwordHash)) {
-            next(null, false, { message: 'Incorrect password.' });
+            next(null, false, { message: 'Invalid credentials.' });
             return;
           }
 
