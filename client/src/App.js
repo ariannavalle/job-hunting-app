@@ -4,11 +4,12 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AUTH_SERVICE from './services/AuthService';
+import CARD_SERVICE from './services/CardService'
 
 import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
-import Home from './components/Home/index'
 import Navbar from './components/NavBar/index'
+import Board from './components/Board/Board'
 
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -16,18 +17,20 @@ import ProtectedRoute from './components/ProtectedRoute';
 export default class App extends React.Component {
   state = {
     currentUser: null,
-
+    cards: [],
   };
 
   componentDidMount = () => {
-    AUTH_SERVICE.getAuthenticatedUser()
+    Promise.all([CARD_SERVICE.getCards(), AUTH_SERVICE.getAuthenticatedUser()])
       .then(responseFromServer => {
-        const { user } = responseFromServer.data;
+        const { cards } = responseFromServer[0].data;
+        const { user } = responseFromServer[1].data;
 
-        this.updateUser(user);
+        this.setState({ cards, currentUser: user });
       })
       .catch(err => console.log(err));
   };
+
 
   updateUser = user => {
     this.setState({ currentUser: user });
@@ -35,6 +38,7 @@ export default class App extends React.Component {
 
   render() {
     console.log('user in client: ', this.state.currentUser);
+    console.log('cards: ', this.state.cards);
     return (
       <div className='App'>
         <BrowserRouter>
@@ -43,9 +47,18 @@ export default class App extends React.Component {
           </nav>
           <Switch>
             {/* <Route path='/somePage' component={someComponent} /> */}
-            <Route exact path='/' render={props => <Home />} />
             <Route path='/signup-page' render={props => <Signup {...props} onUserChange={this.updateUser} />} />
             <Route path='/login-page' render={props => <Login {...props} onUserChange={this.updateUser} />} />
+
+          {this.state.currentUser && 
+          (<ProtectedRoute
+              path='/'
+              authorized={this.state.currentUser}
+              redirect={'/signup-page'}
+              render={props => <Board {...props} currentUser={this.state.currentUser} cards={this.state.cards} />}
+            />)
+            }
+            
 
 
           </Switch>
