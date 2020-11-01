@@ -6,9 +6,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AUTH_SERVICE from './services/AuthService';
 import CARD_SERVICE from './services/CardService'
 
-import Signup from './components/Authentication/Signup';
-import Login from './components/Authentication/Login';
-import Navbar from './components/NavBar/index'
+import Signup from './components/Authentication/Signup/signup';
+import Login from './components/Authentication/Login/login';
+import Navbar from './components/NavBar/navbar'
 import Board from './components/Board/Board'
 
 import ProtectedRoute from './components/ProtectedRoute';
