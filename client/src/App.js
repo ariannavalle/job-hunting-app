@@ -41,23 +41,34 @@ export default class App extends React.Component {
     return (
       <div className='App'>
         <BrowserRouter>
-          <nav>
+
+        {this.state.currentUser && (<nav>
             <Navbar currentUser={this.state.currentUser} onUserChange={this.updateUser} />
-          </nav>
+          </nav>)}
+          
+
           <Switch>
             {/* <Route path='/somePage' component={someComponent} /> */}
-            <Route path='/signup' render={props => <Signup {...props} onUserChange={this.updateUser} />} />
+
+             <Route path='/signup' render={props => <Signup {...props} onUserChange={this.updateUser} />} />
             <Route path='/login' render={props => <Login {...props} onUserChange={this.updateUser} />} />
 
-          {this.state.currentUser && 
-          (<ProtectedRoute
-              path='/'
-              authorized={this.state.currentUser}
-              redirect={'/signup'}
-              render={props => <Board {...props} currentUser={this.state.currentUser} cards={this.state.cards} />}
-            />)
+
+            {/* if user is logged in, render the board component at the root path*/}
+            {this.state.currentUser &&
+              (<ProtectedRoute
+                path='/'
+                authorized={this.state.currentUser}
+                redirect={'/signup'}
+                render={props => <Board {...props} currentUser={this.state.currentUser} cards={this.state.cards} />}
+              />)
             }
-            
+
+            {/* otherwise render the signup component in the root path*/}
+            <Route path='/' render={props => <Signup {...props} onUserChange={this.updateUser} />} />
+
+           
+
 
 
           </Switch>

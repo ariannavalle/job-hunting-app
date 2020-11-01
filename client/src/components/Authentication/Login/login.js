@@ -43,7 +43,7 @@ export default class Signup extends React.Component {
           <div className="container">
             <div className="signin-content">
               <div className="signin-image">
-                <figure><img src="/images/signup-image.jpg" alt="sign up image" /></figure>
+                <figure><img src="/images/signin-image.jpg" alt="sign up image" /></figure>
                 <Link to='/signup' className="signup-image-link">Create an account</Link>
               </div>
 

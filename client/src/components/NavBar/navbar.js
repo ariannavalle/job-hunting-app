@@ -16,17 +16,11 @@ const NavBar = props => {
         <strong>Home</strong>
       </Link>
 
-      {(props.currentUser && (
         <>
           <span>{props.currentUser.username}</span>
           <button onClick={logoutAndLiftUserState}> Logout </button>
         </>
-      )) || (
-        <>
-          <Link to='/signup'>Signup</Link>
-          <Link to='/login'>Login</Link>
-        </>
-      )}
+      
     </nav>
   );
 };

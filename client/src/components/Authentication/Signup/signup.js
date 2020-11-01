@@ -90,7 +90,7 @@ export default class Signup extends React.Component {
                 </form>
               </div>
               <div className="signup-image">
-                <figure><img src="images/signin-image.jpg" alt="sign up image" /></figure>
+                <figure><img src="images/signup-image.jpg" alt="sign up image" /></figure>
                 <Link to='/login' className="signup-image-link">I am already member</Link>
               </div>
             </div>
