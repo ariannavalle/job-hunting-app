@@ -86,7 +86,7 @@ router.post('/api/logout', routeGuard, (req, res, next) => {
 });
 
 router.get('/api/isLoggedIn', (req, res) => {
-  console.log('user u isLoggedIn: ', req.user);
+  console.log('user isLoggedIn: ', req.user);
   if (req.user) {
     req.user.passwordHash = undefined;
     res.status(200).json({ user: req.user });
