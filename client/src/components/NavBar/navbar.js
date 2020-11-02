@@ -12,9 +12,9 @@ const NavBar = props => {
   };
   return (
     <nav>
-      <Link to='/'>
+      {/* <Link to='/'>
         <strong>Home</strong>
-      </Link>
+      </Link> */}
 
         <>
           <span>{props.currentUser.username}</span>
