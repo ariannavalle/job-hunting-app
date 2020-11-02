@@ -1,7 +1,3 @@
-// ROUTES FILE NEEDS TO BE REQUIRED IN THE APP.JS IN ORDER NOT TO GIVE 404
-// APP NEEDS TO KNOW YOU CREATED A NEW ROUTE FILE,
-// THAT'S THE ONLY WAY FOR IT TO KNOW WHICH ROUTES YOU WANT TO HIT
-
 const express = require('express');
 const router = express.Router();
 
@@ -57,7 +53,6 @@ router.post('/api/cards/:cardId/delete', (req, res) => {
 
 router.get('/api/cards/:someCardId', (req, res) => {
   Card.findById(req.params.someCardId)
-    .populate('author')
     .then(foundCard => res.status(200).json({ card: foundCard }))
     .catch(err => next(err));
 });

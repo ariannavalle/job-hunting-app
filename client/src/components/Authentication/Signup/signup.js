@@ -50,21 +50,21 @@ export default class Signup extends React.Component {
 
                   {/* name */}
                   <div className="form-group">
-                    <label for="name" className="icon"><MdPerson /></label>
+                    <label htmlFor="name" className="icon"><MdPerson /></label>
                     <input type="text" name="name" id="name" placeholder="Your Name" value={this.state.name}
                       onChange={this.handleInputChange} />
                   </div>
 
                   {/* email */}
                   <div className="form-group">
-                    <label for="email" className="icon"><MdEmail /></label>
+                    <label htmlFor="email" className="icon"><MdEmail /></label>
                     <input type="email" name="email" id="email" placeholder="Your Email" value={this.state.email}
                       onChange={this.handleInputChange} />
                   </div>
 
                   {/* password */}
                   <div className="form-group">
-                    <label for="pass" className="icon"><MdLock /></label>
+                    <label htmlFor="pass" className="icon"><MdLock /></label>
                     <input type="password" name="password" id="pass" placeholder="Password" value={this.state.password}
                       onChange={this.handleInputChange} />
                   </div>
@@ -90,7 +90,7 @@ export default class Signup extends React.Component {
                 </form>
               </div>
               <div className="signup-image">
-                <figure><img src="images/signup-image.jpg" alt="sign up image" /></figure>
+                <figure><img src="images/signup-image.jpg" alt="illustration of modern desk" /></figure>
                 <Link to='/login' className="signup-image-link">I am already member</Link>
               </div>
             </div>

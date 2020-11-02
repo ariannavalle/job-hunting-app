@@ -43,7 +43,7 @@ export default class Signup extends React.Component {
           <div className="container">
             <div className="signin-content">
               <div className="signin-image">
-                <figure><img src="/images/signin-image.jpg" alt="sign up image" /></figure>
+                <figure><img src="/images/signin-image.jpg" alt="illustration of a person sitting on a chair holding a laptop" /></figure>
                 <Link to='/signup' className="signup-image-link">Create an account</Link>
               </div>
 
@@ -52,20 +52,20 @@ export default class Signup extends React.Component {
                 <form onSubmit={this.handleFormSubmission} className="register-form" id="login-form">
 
                   <div className="form-group">
-                  <label for="email" className="icon"><MdEmail /></label>
+                  <label htmlFor="email" className="icon"><MdEmail /></label>
                     <input type="email" name="email" id="email" placeholder="Email" value={this.state.email}
                       onChange={this.handleInputChange} />
                   </div>
 
                   <div className="form-group">
-                  <label for="your_pass" className="icon"><MdLock /></label>
+                  <label htmlFor="your_pass" className="icon"><MdLock /></label>
                     <input type="password" name="password" id="your_pass" placeholder="Password" value={this.state.password}
                       onChange={this.handleInputChange} />
                   </div>
 
                   {/* <div className="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" className="agree-term" />
-                                <label for="remember-me" className="label-agree-term"><span><span></span></span>Remember me</label>
+                                <label htmlFor="remember-me" className="label-agree-term"><span><span></span></span>Remember me</label>
                             </div> */}
                   <div className="form-group form-button">
                     <input type="submit" name="signin" id="signin" className="form-submit" value="Log in" />

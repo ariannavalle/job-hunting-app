@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
+const db = process.env.MONGODB_URI || 'mongodb://localhost/job-hunting-app'
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect(db, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,

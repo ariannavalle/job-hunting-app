@@ -20,6 +20,7 @@ router.post('/api/columns', (req, res, next) => {
 
 router.get('/api/columns', (req, res) => {
   Column.find()
+    .populate('Card')
     .then(columnsFromDB => res.status(200).json({ columns: columnsFromDB }))
     .catch(err => next(err));
 });
@@ -52,7 +53,7 @@ router.post('/api/columns/:columnId/delete', (req, res) => {
 
 router.get('/api/columns/:someColumnId', (req, res) => {
   Column.findById(req.params.someColumnId)
-    .populate('card')
+    .populate('Card')
     .then(foundColumn => res.status(200).json({ column: foundColumn }))
     .catch(err => next(err));
 });

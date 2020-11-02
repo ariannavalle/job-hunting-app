@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AUTH_SERVICE from './services/AuthService';
 import CARD_SERVICE from './services/CardService'
+import COLUMN_SERVICE from './services/ColumnService'
 
 import Signup from './components/Authentication/Signup/signup';
 import Login from './components/Authentication/Login/login';
@@ -17,15 +18,17 @@ export default class App extends React.Component {
   state = {
     currentUser: null,
     cards: [],
+    columns: [],
   };
 
   componentDidMount = () => {
-    Promise.all([CARD_SERVICE.getCards(), AUTH_SERVICE.getAuthenticatedUser()])
+    Promise.all([CARD_SERVICE.getCards(), COLUMN_SERVICE.getColumns(), AUTH_SERVICE.getAuthenticatedUser()])
       .then(responseFromServer => {
         const { cards } = responseFromServer[0].data;
-        const { user } = responseFromServer[1].data;
-
-        this.setState({ cards, currentUser: user });
+        const { columns } = responseFromServer[1].data;
+        const { user } = responseFromServer[2].data; //last
+        
+        this.setState({ cards, columns, currentUser: user });
       })
       .catch(err => console.log(err));
   };
@@ -35,9 +38,20 @@ export default class App extends React.Component {
     this.setState({ currentUser: user });
   };
 
+  updateCards = cards => {
+    const updateCards = [...this.state.cards, cards];
+    this.setState({ cards: updateCards });
+  };
+
+  updateColumns = column => {
+    const updateColumns = [...this.state.columns, column];
+    this.setState({ columns: updateColumns });
+  };
+
   render() {
-    console.log('user in client: ', this.state.currentUser);
+    console.log('user: ', this.state.currentUser);
     console.log('cards: ', this.state.cards);
+    console.log('columns: ', this.state.columns);
     return (
       <div className='App'>
         <BrowserRouter>
@@ -60,7 +74,7 @@ export default class App extends React.Component {
                 path='/'
                 authorized={this.state.currentUser}
                 redirect={'/signup'}
-                render={props => <Board {...props} currentUser={this.state.currentUser} cards={this.state.cards} />}
+                render={props => <Board {...props} currentUser={this.state.currentUser} cards={this.state.cards} columns={this.state.columns} onCardsChange={this.updateCards} onColumnsChange={this.updateColumns}/>}
               />)
             }
 
