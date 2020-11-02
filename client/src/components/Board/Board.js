@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from '../Card/card'
+import Column from '../Column/column'
 
 export default function Board({ currentUser, cards, columns }) {
     return (
@@ -10,12 +10,7 @@ export default function Board({ currentUser, cards, columns }) {
                 {columns.map(column => {
                     return (
                         <div key={column._id}>
-                            <div><b>{column.title}</b></div>
-                            <div>{column.cards.map(card => {
-                                return (<div key={card._id}>
-                                    <Card card={card} />
-                                </div>)
-                            })}</div>
+                            <Column column={column} />
                         </div>
                     )
                 })}

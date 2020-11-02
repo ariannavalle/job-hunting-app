@@ -1,0 +1,6 @@
+.column {
+    margin: 8px;
+    padding: 8px;
+    border: 2px solid darkgrey;
+    border-radius: 2px;
+}
