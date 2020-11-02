@@ -39,6 +39,7 @@ require('./configs/passport/passport.config.js')(app);
 app.use('/', require('./routes/index.routes'));
 app.use('/', require('./routes/auth.routes'));
 app.use('/', require('./routes/card.routes'));
+app.use('/', require('./routes/column.routes'));
 
 
 // catch missing routes and forward to error handler
