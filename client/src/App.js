@@ -38,15 +38,22 @@ export default class App extends React.Component {
     this.setState({ currentUser: user });
   };
 
-  updateCards = cards => {
-    const updateCards = [...this.state.cards, cards];
-    this.setState({ cards: updateCards });
-  };
+  // updateCards = cards => {
+  //   const updateCards = [...this.state.cards, cards];
+  //   this.setState({ cards: updateCards });
+  // };
 
-  updateColumns = column => {
-    const updateColumns = [...this.state.columns, column];
-    this.setState({ columns: updateColumns });
-  };
+  // updateColumns = column => {
+  //   const updateColumns = [...this.state.columns, column];
+  //   this.setState({ columns: updateColumns });
+  // };
+
+  replaceColumn = column => {
+    const columnIndex = this.state.columns.findIndex(col => col._id === column._id);
+    const columnsCopy =[...this.state.columns];
+    columnsCopy.splice(columnIndex, 1, column);
+    this.setState({ columns: columnsCopy });
+  }
 
   render() {
     console.log('user: ', this.state.currentUser);
@@ -74,7 +81,14 @@ export default class App extends React.Component {
                 path='/'
                 authorized={this.state.currentUser}
                 redirect={'/signup'}
-                render={props => <Board {...props} currentUser={this.state.currentUser} cards={this.state.cards} columns={this.state.columns} onCardsChange={this.updateCards} onColumnsChange={this.updateColumns}/>}
+                render={props => <Board {...props} 
+                  currentUser={this.state.currentUser} 
+                  cards={this.state.cards} 
+                  columns={this.state.columns} 
+                  onCardsChange={this.updateCards} 
+                  onColumnsChange={this.updateColumns}
+                  replaceColumn={this.replaceColumn}
+                />}
               />)
             }
 
