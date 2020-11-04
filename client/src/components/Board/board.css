@@ -6,10 +6,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 4rem;
+    width: 3rem;
+    height: 3rem;
     margin: 8px;
-    background-color: #07548D;
-    border-radius: 4px;
+    background-color: #3dbbe6;
+    border-radius: 50%;
     color: white;
     padding: .2rem;
     font-size: 2rem;

@@ -16,6 +16,11 @@ const cards = [
   { "title": "Software Engineer", "company": "ABC corp", "date": "10/12/20", "note": "They have a gym onsite.", "location": "Serbia" },
   { "title": "QA Engineer", "company": "XYZ corp", "date": "11/03/20", "note": "Sounds like a very rewarding job.", "location": "Spain" },
   { "title": "Full Stack Developer", "company": "Evil inc", "date": "12/29/20", "note": "Red flag: no free lunch.", "location": "Florida" },
+  { "title": "QA Engineer", "company": "Apple", "location": "Cupertino, CA, US" },
+  { "title": "Software Engineer", "company": "Microsoft", "location": "Redmond, WA, US" },
+  { "title": "Software Engineer", "company": "Tesla", "location": "Fremont, CA, US" },
+  { "title": "Software Engineer", "company": "Salesforce", "location": "Bellevue, WA, US" },
+  // { "title": "", "company": "", "date": "", "note": "", "location": "" },
 ]
 
 // start the database
@@ -37,7 +42,7 @@ User
         const columns = [
           { "title":"Review",
             "cards": 
-            [ cardsFromDB[0]._id]
+            [ cardsFromDB[0]._id, cardsFromDB[4]._id,cardsFromDB[5]._id,cardsFromDB[6]._id,cardsFromDB[7]._id,]
           },
           { "title":"Applied",
           "cards": 
