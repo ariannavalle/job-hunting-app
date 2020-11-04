@@ -1,7 +1,15 @@
 .card {
     margin: 8px;
-    padding: 8px;
+    padding: 1rem;
     background-color: white;
-    border: 1px solid lightgrey;
-    border-radius: 2px;
+    border-radius: 8px;
+}
+
+.card-header {
+    font-size: 1.7rem;
+}
+
+.card-subheader {
+    font-size: 1.1rem;
+    margin: 8px;
 }

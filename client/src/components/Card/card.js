@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './card.css'
 import { Draggable } from 'react-beautiful-dnd'
+import { MdLocationOn } from "react-icons/md";
+import { BsBuilding } from "react-icons/bs";
+
 
 export default class card extends Component {
 
@@ -16,12 +19,12 @@ export default class card extends Component {
                         {...provided.dragHandleProps}
                         {...provided.draggableProps}
                     >
-                        <div>Title: {title}</div>
-                        <div>Company: {company}</div>
-                        <div>Location: {location}</div>
-                        <div>Date Applied: {date}</div>
-                        <div>Notes: {note}</div>
-                        <br />
+                        <div className="card-header">{title}</div>
+                        <div className="card-subheader"><BsBuilding /> {company}</div>
+                        <div className="card-subheader"><MdLocationOn style={{ color: "#f40810" }} /> {location}</div>
+                        {/*<div>Date Applied: {date}</div>
+                        <div>Notes: {note}</div> */}
+
                     </div>
                 )}
             </Draggable>

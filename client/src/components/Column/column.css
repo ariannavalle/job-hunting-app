@@ -1,6 +1,47 @@
 .column {
     margin: 8px;
     padding: 8px;
-    border: 2px solid darkgrey;
-    border-radius: 2px;
+    /* border: 2px solid darkgrey; */
+    border-radius: 4px;
+    background-color: #f4f5f7;
+}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px;
+    padding: .5rem 2rem .5rem 1rem;
+    background-color: #4bb35c; 
+    font-weight: bold;
+    border-radius: 4px;
+    color: white;
+}
+
+.c-h-0{
+    background-color: #EF476F;
+}
+
+.c-h-1{
+    background-color: #FFD166;
+}
+
+.c-h-2{
+    background-color: #06D6A0;
+}
+
+.c-h-3{
+    background-color: #FE8489;
+}
+
+.c-h-4{
+    background-color: #3dbbe6;
+}
+
+/* desktop */
+
+@media only screen and (min-width: 768px) {
+    .column {
+        width: 323px;
+        min-height: 100vh;
+    }
 }

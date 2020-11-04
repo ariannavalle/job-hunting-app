@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Column from '../Column/column'
 import { DragDropContext } from 'react-beautiful-dnd'
+import './board.css'
+import { MdAdd } from "react-icons/md";
 
 export default class Board extends Component {
 
@@ -54,15 +56,17 @@ export default class Board extends Component {
     render() {
         const { currentUser, columns } = this.props;
         return (
-            <div>
+            <div className="board-container">
                 <h1>{`${currentUser.name}'s`} Job Application Tracking Board</h1>
+
+                <div className="add-btn"><MdAdd /></div>
 
                 <DragDropContext
                     // onDragStart
                     // onDragUpdate
                     onDragEnd={this.onDragEnd}
                 >
-                    <div>
+                    <div className="board">
                         {Object.values(columns).map((column, index) => {
                             return (
                                 <div key={column._id}>
