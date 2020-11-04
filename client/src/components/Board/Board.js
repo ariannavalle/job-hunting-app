@@ -10,8 +10,8 @@ export default class Board extends Component {
     // Draggable => cards
 
     onDragEnd = result => {
-        const {destination, source, draggableId } = result;
-        const { columns, replaceColumn } = this.props;
+        const { destination, source, draggableId } = result;
+        const { columns, replaceColumns } = this.props;
 
         console.log(`
         initial position:     ${source.index} | column id: ${source.droppableId}
@@ -25,23 +25,31 @@ export default class Board extends Component {
         // card moved to the same position it was initially in
         if (source.droppableId === destination.droppableId && source.index === destination.index) return;
 
-        // reorder card ids in column
+        /// reorder card ids in column
         // retrieve the source column
-        const column = columns.find(col => col._id === source.droppableId);
-        console.log(columns, source.droppableId)
+        const columnSrc = Object.values(columns).find(
+            (col) => col._id === source.droppableId
+        );
+        let columnDst = Object.values(columns).find(
+            (col) => col._id === destination.droppableId
+        );
 
+        const cardsSrc = [...columnSrc.cards];
+        let cardsDst = [...columnDst.cards];
 
-        const newCardIds = Array.from(column.cards)
-        newCardIds.splice(source.index,1)
-        newCardIds.splice(destination.index, 0, draggableId)
-
-        const newColumn = {
-            ...column,
-            cards: newCardIds
+        if (source.droppableId === destination.droppableId) {
+            cardsDst = cardsSrc;
         }
+        const card = cardsSrc.find((crd) => crd._id === draggableId);
 
-        replaceColumn(newColumn)
-    }
+        cardsSrc.splice(source.index, 1);
+        cardsDst.splice(destination.index, 0, card);
+
+        replaceColumns(
+            { ...columnSrc, cards: cardsSrc },
+            { ...columnDst, cards: cardsDst }
+        );
+    };
 
     render() {
         const { currentUser, columns } = this.props;
@@ -55,12 +63,12 @@ export default class Board extends Component {
                     onDragEnd={this.onDragEnd}
                 >
                     <div>
-                        {columns.map((column, index) => {
+                        {Object.values(columns).map((column, index) => {
                             return (
                                 <div key={column._id}>
                                     <Column column={column} index={index} />
                                 </div>
-                            )
+                            );
                         })}
                     </div>
                 </DragDropContext>

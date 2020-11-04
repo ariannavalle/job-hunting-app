@@ -9,7 +9,7 @@ import COLUMN_SERVICE from './services/ColumnService'
 import Signup from './components/Authentication/Signup/signup';
 import Login from './components/Authentication/Login/login';
 import Navbar from './components/NavBar/navbar'
-import Board from './components/Board/board'
+import Board from './components/Board/Board'
 
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -22,15 +22,38 @@ export default class App extends React.Component {
   };
 
   componentDidMount = () => {
-    Promise.all([CARD_SERVICE.getCards(), COLUMN_SERVICE.getColumns(), AUTH_SERVICE.getAuthenticatedUser()])
-      .then(responseFromServer => {
-        const { cards } = responseFromServer[0].data;
-        const { columns } = responseFromServer[1].data;
+    this.fetchData();
+  };
+
+  fetchData = () => {
+    Promise.all([
+      CARD_SERVICE.getCards(),
+      COLUMN_SERVICE.getColumns(),
+      AUTH_SERVICE.getAuthenticatedUser(),
+    ])
+      .then((responseFromServer) => {
+        const cards = responseFromServer[0].data?.cards?.reduce(
+          (a, v) => ({ ...a, [v._id]: v }),
+          {}
+        );
+        const columns = responseFromServer[1].data?.columns?.reduce(
+          (a, v) => ({ ...a, [v._id]: v }),
+          {}
+        );
         const { user } = responseFromServer[2].data; //last
-        
         this.setState({ cards, columns, currentUser: user });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
+  };
+
+  replaceColumns = (column1, column2) => {
+    this.setState({
+      columns: {
+        ...this.state.columns,
+        [column1._id]: column1,
+        [column2._id]: column2,
+      },
+    });
   };
 
 
@@ -48,12 +71,15 @@ export default class App extends React.Component {
   //   this.setState({ columns: updateColumns });
   // };
 
-  replaceColumn = column => {
-    const columnIndex = this.state.columns.findIndex(col => col._id === column._id);
-    const columnsCopy =[...this.state.columns];
-    columnsCopy.splice(columnIndex, 1, column);
-    this.setState({ columns: columnsCopy });
-  }
+  replaceColumns = (column1, column2) => {
+    this.setState({
+      columns: {
+        ...this.state.columns,
+        [column1._id]: column1,
+        [column2._id]: column2,
+      },
+    });
+  };
 
   render() {
     console.log('user: ', this.state.currentUser);
@@ -87,7 +113,7 @@ export default class App extends React.Component {
                   columns={this.state.columns} 
                   onCardsChange={this.updateCards} 
                   onColumnsChange={this.updateColumns}
-                  replaceColumn={this.replaceColumn}
+                  replaceColumns={this.replaceColumns}
                 />}
               />)
             }
