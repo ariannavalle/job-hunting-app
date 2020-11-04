@@ -1,18 +1,18 @@
-import axios from 'axios';
+import axios from "axios";
 
-const baseURL = process.env.REACT_APP_SERVER_POINT;
+const baseURL = process.env.REACT_APP_SERVER_POINT || "http://localhost:5000";
 
 const service = axios.create({
   baseURL,
-  withCredentials: true
+  withCredentials: true,
 });
 
 const COLUMN_SERVICE = {
   createColumn(columnData) {
-    return service.post('/api/columns', columnData);
+    return service.post("/api/columns", columnData);
   },
   getColumns() {
-    return service.get('/api/columns');
+    return service.get("/api/columns");
   },
   deleteColumn(id) {
     return service.post(`/api/columns/${id}/delete`, {});
@@ -22,7 +22,7 @@ const COLUMN_SERVICE = {
   },
   getColumnDetails(id) {
     return service.get(`/api/columns/${id}`);
-  }
+  },
 };
 
 export default COLUMN_SERVICE;
