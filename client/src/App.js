@@ -9,7 +9,7 @@ import COLUMN_SERVICE from './services/ColumnService'
 import Signup from './components/Authentication/Signup/signup';
 import Login from './components/Authentication/Login/login';
 import Navbar from './components/NavBar/navbar'
-import Board from './components/Board/Board'
+import Board from './components/Board/board'
 
 import ProtectedRoute from './components/ProtectedRoute';
 
