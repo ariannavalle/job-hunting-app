@@ -2,20 +2,6 @@
     background-color: white;
 }
 
-.add-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 3rem;
-    height: 3rem;
-    margin: 8px;
-    background-color: #3dbbe6;
-    border-radius: 50%;
-    color: white;
-    padding: .2rem;
-    font-size: 2rem;
-}
-
 /* desktop */
 @media only screen and (min-width: 768px) {
     .board {

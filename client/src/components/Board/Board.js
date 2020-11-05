@@ -47,13 +47,38 @@ export default class Board extends Component {
         );
     };
 
+    getJobsApplied = () => {
+        const { columns } = this.props;
+        let jobsInColumns = Object.values(columns)
+        let totalJobs = jobsInColumns.reduce((accum, curr) => {
+            return accum + curr.cards.length
+        }, 0)
+        let interestedJobs = columns[Object.keys(columns)[0]].cards.length
+        return totalJobs - interestedJobs;
+    }
+
+    getMsg = () => {
+        if (this.getJobsApplied() === 0) {
+            return "jobs. What are you waiting for?"
+        }
+        else if (this.getJobsApplied() === 1) {
+            return "job."
+        }
+        else {
+            return "jobs. Keep it up!"
+        }
+    }
+
     render() {
         const { currentUser, columns } = this.props;
+
+
         return (
             <div className="board-container">
-                <h2 className="form-title">Welcome, {`${currentUser.name}.`}</h2>
+                <h2>Welcome, {`${currentUser.name}.`}</h2>
+                <div style={{color:"#777"}}>You have applied to <b>{this.getJobsApplied()}</b> {this.getMsg()} </div>
 
-                <CreateCard/>
+                <CreateCard />
 
                 <DragDropContext
                     // onDragStart

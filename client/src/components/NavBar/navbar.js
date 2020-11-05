@@ -18,7 +18,7 @@ const NavBar = props => {
 
         <>
           <span>{props.currentUser.username}</span>
-          <button onClick={logoutAndLiftUserState}> Logout </button>
+          <a onClick={logoutAndLiftUserState} style={{position:"absolute",top:"0",right:"0", margin:"1rem"}}> Logout </a>
         </>
       
     </nav>

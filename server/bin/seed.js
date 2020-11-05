@@ -40,7 +40,7 @@ User
       .then(cardsFromDB => {
 
         const columns = [
-          { "title":"Review",
+          { "title":"Interested",
             "cards": 
             [ cardsFromDB[0]._id, cardsFromDB[4]._id,cardsFromDB[5]._id,cardsFromDB[6]._id,cardsFromDB[7]._id,]
           },
