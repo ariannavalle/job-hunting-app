@@ -40,8 +40,10 @@
 /* desktop */
 
 @media only screen and (min-width: 768px) {
-    .column {
+    .column{
         width: 323px;
+    }
+    .column .droppable-height{
         min-height: 100vh;
     }
 }

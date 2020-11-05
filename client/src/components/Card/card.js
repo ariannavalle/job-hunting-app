@@ -12,12 +12,12 @@ export default class card extends Component {
         const { index } = this.props;
         return (
             <Draggable draggableId={_id} index={index}>
-                {(provided,snapshot) => {
+                {(provided, snapshot) => {
                     const style = {
                         backgroundColor: snapshot.isDragging ? '#bad2f7' : 'white',
                         fontSize: 18,
                         ...provided.draggableProps.style,
-                      };
+                    };
                     return (<div
                         className="card"
                         ref={provided.innerRef}

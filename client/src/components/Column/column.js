@@ -35,10 +35,10 @@ export default class column extends Component {
                 <div>
                     <Droppable droppableId={_id} index={index}>
                         {(provided, snapshot) => (
-                            <div
+                            <div class="droppable-height"
                                 ref={provided.innerRef}
                                 // style={{ backgroundColor: snapshot.isDraggingOver ? '#deebff' : 'inherit', minHeight:"100vh" }}
-                                style={{ backgroundColor: this.getBackgroundColor(snapshot), minHeight: "100vh" }}
+                                style={{ backgroundColor: this.getBackgroundColor(snapshot) }}
                                 {...provided.droppableProps}
                             >
                                 {cards.map((card, index) => {
