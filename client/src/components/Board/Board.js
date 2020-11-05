@@ -15,12 +15,6 @@ export default class Board extends Component {
         const { destination, source, draggableId } = result;
         const { columns, replaceColumns } = this.props;
 
-        console.log(`
-        initial position:     ${source.index} | column id: ${source.droppableId}
-        destination:          ${destination.index} | column id: ${destination.droppableId}
-        card id:              ${draggableId}
-        `)
-
         // card has not moved
         if (!destination) return;
 

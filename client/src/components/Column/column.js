@@ -35,7 +35,7 @@ export default class column extends Component {
                 <div>
                     <Droppable droppableId={_id} index={index}>
                         {(provided, snapshot) => (
-                            <div class="droppable-height"
+                            <div className="droppable-height"
                                 ref={provided.innerRef}
                                 // style={{ backgroundColor: snapshot.isDraggingOver ? '#deebff' : 'inherit', minHeight:"100vh" }}
                                 style={{ backgroundColor: this.getBackgroundColor(snapshot) }}
