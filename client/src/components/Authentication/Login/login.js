@@ -47,7 +47,7 @@ export default class Signup extends React.Component {
                 <Link to='/signup' className="signup-image-link">Create an account</Link>
               </div>
 
-              <div className="signin-form">
+              <div className="global-form">
                 <h2 className="form-title">Sign in</h2>
                 <form onSubmit={this.handleFormSubmission} className="register-form" id="login-form">
 

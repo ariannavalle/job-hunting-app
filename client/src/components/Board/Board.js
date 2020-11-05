@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Column from '../Column/column'
+import CreateCard from '../Card/CreateCard'
 import { DragDropContext } from 'react-beautiful-dnd'
 import './board.css'
-import { MdAdd } from "react-icons/md";
 
 export default class Board extends Component {
 
@@ -51,9 +51,9 @@ export default class Board extends Component {
         const { currentUser, columns } = this.props;
         return (
             <div className="board-container">
-                <h1>{`${currentUser.name}'s`} Job Application Tracking Board</h1>
+                <h2 className="form-title">Welcome, {`${currentUser.name}.`}</h2>
 
-                <div className="add-btn"><MdAdd /></div>
+                <CreateCard/>
 
                 <DragDropContext
                     // onDragStart

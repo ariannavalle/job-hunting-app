@@ -175,7 +175,7 @@ h2 {
   padding: 75px 0;
 }
 
-.signup-form, .signup-image, .signin-form, .signin-image {
+.signup-form, .signup-image, .global-form, .signin-image {
   width: 50%;
   overflow: hidden;
 }
@@ -489,7 +489,7 @@ label.valid:after {
   background: #e72734;
 }
 
-.signin-form {
+.global-form {
   margin-right: 90px;
   margin-left: 80px;
 }
@@ -547,7 +547,7 @@ label.valid:after {
     -o-order: 2;
     -ms-order: 2;
   }
-  .signup-form, .signup-image, .signin-form, .signin-image {
+  .signup-form, .signup-image, .global-form, .signin-image {
     width: auto;
   }
   .social-login {
@@ -560,7 +560,7 @@ label.valid:after {
   .form-button {
     text-align: center;
   }
-  .signin-form {
+  .global-form {
     order: 1;
     -moz-order: 1;
     -webkit-order: 1;
