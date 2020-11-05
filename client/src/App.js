@@ -46,17 +46,6 @@ export default class App extends React.Component {
       .catch((err) => console.log(err));
   };
 
-  replaceColumns = (column1, column2) => {
-    this.setState({
-      columns: {
-        ...this.state.columns,
-        [column1._id]: column1,
-        [column2._id]: column2,
-      },
-    });
-  };
-
-
   updateUser = user => {
     this.setState({ currentUser: user });
   };
@@ -71,7 +60,7 @@ export default class App extends React.Component {
   //   this.setState({ columns: updateColumns });
   // };
 
-  replaceColumns = (column1, column2) => {
+  replaceColumns = async(column1, column2) => {
     this.setState({
       columns: {
         ...this.state.columns,
@@ -79,6 +68,7 @@ export default class App extends React.Component {
         [column2._id]: column2,
       },
     });
+    await Promise.all([COLUMN_SERVICE.updateColumn(column1._id, column1), COLUMN_SERVICE.updateColumn(column2._id, column2)]);
   };
 
   render() {
@@ -120,10 +110,6 @@ export default class App extends React.Component {
 
             {/* otherwise render the signup component in the root path*/}
             <Route path='/' render={props => <Signup {...props} onUserChange={this.updateUser} />} />
-
-
-
-
 
           </Switch>
         </BrowserRouter>
