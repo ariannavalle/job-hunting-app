@@ -6,10 +6,10 @@ import AUTH_SERVICE from './services/AuthService';
 import CARD_SERVICE from './services/CardService'
 import COLUMN_SERVICE from './services/ColumnService'
 
-import Signup from './components/Authentication/Signup/signup';
-import Login from './components/Authentication/Login/login';
-import Navbar from './components/NavBar/navbar'
-import Board from './components/Board/board'
+import Signup from './components/Authentication/Signup/Signup';
+import Login from './components/Authentication/Login/Login';
+import Navbar from './components/Navbar/Navbar'
+import Board from './components/Board/Board'
 
 import ProtectedRoute from './components/ProtectedRoute';
 
