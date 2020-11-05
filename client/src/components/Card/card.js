@@ -12,12 +12,18 @@ export default class card extends Component {
         const { index } = this.props;
         return (
             <Draggable draggableId={_id} index={index}>
-                {(provided) => (
-                    <div
+                {(provided,snapshot) => {
+                    const style = {
+                        backgroundColor: snapshot.isDragging ? '#bad2f7' : 'white',
+                        fontSize: 18,
+                        ...provided.draggableProps.style,
+                      };
+                    return (<div
                         className="card"
                         ref={provided.innerRef}
                         {...provided.dragHandleProps}
                         {...provided.draggableProps}
+                        style={style}
                     >
                         <div className="card-header">{title}</div>
                         <div className="card-subheader"><BsBuilding /> {company}</div>
@@ -25,8 +31,8 @@ export default class card extends Component {
                         {/*<div>Date Applied: {date}</div>
                         <div>Notes: {note}</div> */}
 
-                    </div>
-                )}
+                    </div>)
+                }}
             </Draggable>
         )
     }
