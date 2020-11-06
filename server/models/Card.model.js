@@ -8,6 +8,7 @@ const cardSchema = new Schema(
     },
     company: {
       type: String,
+      required: [true, 'Company name is required.'],
     },
     date: {
       type: String,

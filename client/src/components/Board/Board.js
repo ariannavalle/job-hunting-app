@@ -70,15 +70,27 @@ export default class Board extends Component {
     }
 
     render() {
-        const { currentUser, columns } = this.props;
+        const { currentUser, columns, updateCardState, updateColumnState, replaceColumns, cards } = this.props;
 
 
         return (
             <div className="board-container">
                 <h2>Welcome, {`${currentUser.name}.`}</h2>
-                <div style={{color:"#777"}}>You have applied to <b>{this.getJobsApplied()}</b> {this.getMsg()} </div>
+                <div style={{ color: "#777" }}>You have applied to <b>{this.getJobsApplied()}</b> {this.getMsg()} </div>
 
-                <CreateCard />
+                {/* test list view*/}
+                {Object.values(cards).map((card, index) => {
+                    return (
+                        <div key={card._id}>
+                            {card.title}
+                        </div>
+                    )
+                })
+                }
+                {/* test */}
+
+                <CreateCard columns={columns} updateCardState={updateCardState}
+                    updateColumnState={updateColumnState} replaceColumns={replaceColumns} />
 
                 <DragDropContext
                     // onDragStart
