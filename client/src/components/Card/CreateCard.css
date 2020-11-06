@@ -4,12 +4,12 @@
     align-items: center;
     width: 3rem;
     height: 3rem;
-    margin: 8px;
+    margin: 1.5rem;
     background-color: #3dbbe6;
     border-radius: 50%;
     color: white;
     padding: .2rem;
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .form-submit-btn {

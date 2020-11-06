@@ -75,18 +75,21 @@ export default class Board extends Component {
 
         return (
             <div className="board-container">
+
+                <div className="welcome-msg">
                 <h2>Welcome, {`${currentUser.name}.`}</h2>
                 <div style={{ color: "#777" }}>You have applied to <b>{this.getJobsApplied()}</b> {this.getMsg()} </div>
+                </div>
 
                 {/* test list view*/}
-                {Object.values(cards).map((card, index) => {
+                {/* {Object.values(cards).map((card, index) => {
                     return (
                         <div key={card._id}>
                             {card.title}
                         </div>
                     )
                 })
-                }
+                } */}
                 {/* test */}
 
                 <CreateCard columns={columns} updateCardState={updateCardState}
