@@ -8,7 +8,7 @@ import COLUMN_SERVICE from './services/ColumnService'
 
 import Signup from './components/Authentication/Signup/Signup';
 import Login from './components/Authentication/Login/Login';
-import Navbar from './components/Navbar/Navbar'
+import Navbar from './components/NavBar/NavBar'
 import Board from './components/Board/Board'
 
 import ProtectedRoute from './components/ProtectedRoute';

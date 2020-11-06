@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './card.css'
+import './Card.css'
 import { Draggable } from 'react-beautiful-dnd'
 import { MdLocationOn } from "react-icons/md";
 import { BsBuilding } from "react-icons/bs";

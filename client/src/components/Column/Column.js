@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Card from '../Card/card'
-import './column.css'
+import Card from '../Card/Card'
+import './Column.css'
 import { Droppable } from 'react-beautiful-dnd'
 
 export default class column extends Component {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Column from '../Column/column'
+import Column from '../Column/Column'
 import CreateCard from '../Card/CreateCard'
 import { DragDropContext } from 'react-beautiful-dnd'
-import './board.css'
+import './Board.css'
 
 export default class Board extends Component {
 
