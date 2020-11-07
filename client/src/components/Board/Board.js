@@ -3,13 +3,24 @@ import Column from '../Column/Column'
 import CreateCard from '../Card/CreateCard'
 import { DragDropContext } from 'react-beautiful-dnd'
 import './Board.css'
+import CardDetails from '../Card/CardDetails'
 
 export default class Board extends Component {
-
+    state = {
+        modalIsOpen: false,
+        selectedCard: {},
+    };
 
     // DragDropContext => board
     // Droppable => columns
     // Draggable => cards
+
+    toggleModal = (card) => {
+        this.setState({
+            modalIsOpen: !this.state.modalIsOpen,
+            selectedCard: card,
+        });
+    };
 
     onDragEnd = result => {
         const { destination, source, draggableId } = result;
@@ -77,8 +88,8 @@ export default class Board extends Component {
             <div className="board-container">
 
                 <div className="welcome-msg">
-                <h2>Welcome, {`${currentUser.name}.`}</h2>
-                <div style={{ color: "#777" }}>You have applied to <b>{this.getJobsApplied()}</b> {this.getMsg()} </div>
+                    <h2>Welcome, {`${currentUser.name}.`}</h2>
+                    <div style={{ color: "#777" }}>You have applied to <b>{this.getJobsApplied()}</b> {this.getMsg()} </div>
                 </div>
 
                 {/* test list view*/}
@@ -95,6 +106,8 @@ export default class Board extends Component {
                 <CreateCard columns={columns} updateCardState={updateCardState}
                     updateColumnState={updateColumnState} replaceColumns={replaceColumns} />
 
+                <CardDetails card={this.state.selectedCard} modalIsOpen={this.state.modalIsOpen} toggleModal={this.toggleModal} />
+
                 <DragDropContext
                     // onDragStart
                     // onDragUpdate
@@ -104,7 +117,7 @@ export default class Board extends Component {
                         {Object.values(columns).map((column, index) => {
                             return (
                                 <div key={column._id}>
-                                    <Column column={column} index={index} />
+                                    <Column column={column} index={index} toggleModal={this.toggleModal} />
                                 </div>
                             );
                         })}

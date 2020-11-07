@@ -43,7 +43,7 @@ export default class column extends Component {
                             >
                                 {cards.map((card, index) => {
                                     return (
-                                        <div key={card._id}>
+                                        <div key={card._id} onClick={() => this.props.toggleModal(card)}>
                                             <Card card={card} index={index} />
                                         </div>
                                     )

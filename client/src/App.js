@@ -51,18 +51,17 @@ export default class App extends React.Component {
   };
 
   updateCardState = cards => {
-    const updateCard = {...this.state.cards, cards};
+    const updateCard = { ...this.state.cards, cards };
     this.setState({ cards: updateCard });
   };
 
   updateColumnState = async (column) => {
     await COLUMN_SERVICE.updateColumn(column._id, column)
-    const updateColumn = {...this.state.columns, column};
+    const updateColumn = { ...this.state.columns, column };
     this.setState({ columns: updateColumn });
-   
   };
 
-  replaceColumns = async(column1, column2) => {
+  replaceColumns = async (column1, column2) => {
     this.setState({
       columns: {
         ...this.state.columns,
@@ -99,14 +98,15 @@ export default class App extends React.Component {
                 path='/'
                 authorized={this.state.currentUser}
                 redirect={'/signup'}
-                render={props => <Board {...props}
-                  currentUser={this.state.currentUser}
-                  cards={this.state.cards}
-                  columns={this.state.columns}
-                  updateCardState={this.updateCardState}
-                  updateColumnState={this.updateColumnState}
-                  replaceColumns={this.replaceColumns}
-                />}
+                render={props =>
+                  <Board {...props}
+                    currentUser={this.state.currentUser}
+                    cards={this.state.cards}
+                    columns={this.state.columns}
+                    updateCardState={this.updateCardState}
+                    updateColumnState={this.updateColumnState}
+                    replaceColumns={this.replaceColumns}
+                  />}
               />)
             }
 
