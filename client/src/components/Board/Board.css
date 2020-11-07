@@ -3,8 +3,16 @@
 }
 
 .welcome-msg {
-    margin: 1.5rem;
+    margin: 3rem 1.5rem 0;
 }
+
+.alert {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    right: 0;
+    z-index: 7000;
+  }
 
 /* desktop */
 @media only screen and (min-width: 768px) {

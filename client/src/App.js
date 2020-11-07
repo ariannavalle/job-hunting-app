@@ -19,6 +19,7 @@ export default class App extends React.Component {
     currentUser: null,
     cards: [],
     columns: [],
+    successMessage: null
   };
 
   componentDidMount = () => {
@@ -60,6 +61,22 @@ export default class App extends React.Component {
     const updateColumn = { ...this.state.columns, column };
     this.setState({ columns: updateColumn });
   };
+
+  deleteCard = id => {
+    CARD_SERVICE.deleteCard(id)
+    .then((deleteRes)=> {
+      console.log(deleteRes);
+      COLUMN_SERVICE.getColumns()
+          .then( response => {
+            const { columns } = response.data;
+            const { successMessage } = deleteRes.data;
+            this.setState({columns, successMessage})
+          })
+    })
+    .catch(err => {
+      console.log(err)
+     });
+  }
 
   replaceColumns = async (column1, column2) => {
     this.setState({
@@ -103,9 +120,11 @@ export default class App extends React.Component {
                     currentUser={this.state.currentUser}
                     cards={this.state.cards}
                     columns={this.state.columns}
+                    successMessage={this.state.successMessage}
                     updateCardState={this.updateCardState}
                     updateColumnState={this.updateColumnState}
                     replaceColumns={this.replaceColumns}
+                    deleteCard={this.deleteCard}
                   />}
               />)
             }

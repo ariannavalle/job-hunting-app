@@ -79,7 +79,7 @@ export default class CreateCard extends React.Component {
 
 
                 <Modal centered isOpen={this.state.modalIsOpen}>
-                    <ModalHeader toggle={this.toggleModal}><h2>Add New Job</h2></ModalHeader>
+                    <ModalHeader toggle={this.toggleModal}>Add New Job</ModalHeader>
                     <ModalBody>
                         <div className="modal-form">
 

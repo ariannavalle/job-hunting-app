@@ -4,11 +4,13 @@ import CreateCard from '../Card/CreateCard'
 import { DragDropContext } from 'react-beautiful-dnd'
 import './Board.css'
 import CardDetails from '../Card/CardDetails'
+import { Alert } from 'reactstrap';
 
 export default class Board extends Component {
     state = {
         modalIsOpen: false,
         selectedCard: {},
+        notificationIsVisble: false,
     };
 
     // DragDropContext => board
@@ -21,6 +23,14 @@ export default class Board extends Component {
             selectedCard: card,
         });
     };
+
+    displayNotification = ()=>{
+        this.setState({notificationIsVisble:true},()=>{
+          window.setTimeout(()=>{
+            this.setState({notificationIsVisble:false})
+          },2000)
+        });
+      }
 
     onDragEnd = result => {
         const { destination, source, draggableId } = result;
@@ -81,12 +91,14 @@ export default class Board extends Component {
     }
 
     render() {
-        const { currentUser, columns, updateCardState, updateColumnState, replaceColumns, cards } = this.props;
+        const { currentUser, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, successMessage } = this.props;
 
 
         return (
             <div className="board-container">
 
+                <Alert color="warning" isOpen={this.state.notificationIsVisble}>{successMessage}</Alert>
+        
                 <div className="welcome-msg">
                     <h2>Welcome, {`${currentUser.name}.`}</h2>
                     <div style={{ color: "#777" }}>You have applied to <b>{this.getJobsApplied()}</b> {this.getMsg()} </div>
@@ -106,7 +118,7 @@ export default class Board extends Component {
                 <CreateCard columns={columns} updateCardState={updateCardState}
                     updateColumnState={updateColumnState} replaceColumns={replaceColumns} />
 
-                <CardDetails card={this.state.selectedCard} modalIsOpen={this.state.modalIsOpen} toggleModal={this.toggleModal} />
+                <CardDetails card={this.state.selectedCard} deleteCard={deleteCard} modalIsOpen={this.state.modalIsOpen} toggleModal={this.toggleModal} displayNotification={this.displayNotification}/>
 
                 <DragDropContext
                     // onDragStart

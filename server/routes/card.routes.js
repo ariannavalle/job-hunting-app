@@ -19,7 +19,7 @@ router.post('/api/cards', (req, res, next) => {
 // Read - Get all
 // ****************************************************************************************
 
-router.get('/api/cards', (req, res) => {
+router.get('/api/cards', (req, res, next) => {
   Card.find()
     .then(cardsFromDB => res.status(200).json({ cards: cardsFromDB }))
     .catch(err => next(err));
@@ -30,7 +30,7 @@ router.get('/api/cards', (req, res) => {
 // ****************************************************************************************
 
 // <form action="/cards/{{foundCard._id}}/update" method="POST">
-router.post('/api/cards/:id/update', (req, res) => {
+router.post('/api/cards/:id/update', (req, res, next) => {
   Card.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(updatedCard => res.status(200).json({ card: updatedCard }))
     .catch(err => next(err));
@@ -41,17 +41,17 @@ router.post('/api/cards/:id/update', (req, res) => {
 // ****************************************************************************************
 
 // <form action="/cards/{{this._id}}/delete" method="post">
-router.post('/api/cards/:cardId/delete', (req, res) => {
+router.post('/api/cards/:cardId/delete', (req, res, next) => {
   Card.findByIdAndRemove(req.params.cardId)
-    .then(() => res.json({ message: 'Successfully removed!' }))
-    .catch(err => next(err));
+    .then(() => res.json({ message: 'Successfully deleted!' }))
+    .catch(err => res.status(500).json({ message: 'Failed to delete card.' }));
 });
 
 // ****************************************************************************************
 // Read - Get by id
 // ****************************************************************************************
 
-router.get('/api/cards/:someCardId', (req, res) => {
+router.get('/api/cards/:someCardId', (req, res, next) => {
   Card.findById(req.params.someCardId)
     .then(foundCard => res.status(200).json({ card: foundCard }))
     .catch(err => next(err));

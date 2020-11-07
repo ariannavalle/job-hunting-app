@@ -82,7 +82,7 @@ p {
   color: #777;
 }
 
-h2 {
+h2, h5 {
   line-height: 1.66;
   margin: 0;
   padding: 0;
