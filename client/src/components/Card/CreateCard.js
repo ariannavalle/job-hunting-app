@@ -112,17 +112,17 @@ export default class CreateCard extends React.Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="note" className="icon"><BiNote /></label>
-                                    <input type="text" name="note" id="note" placeholder="Notes" value={this.state.note}
-                                        onChange={this.handleChange} />
-                                </div>
-
-                                <div className="form-group">
                                     <label htmlFor="postingURL" className="icon"><MdWeb /></label>
                                     <input type="text" name="postingURL" id="postingURL" placeholder="URL to job posting" value={this.state.postingURL}
                                         onChange={this.handleChange} />
                                 </div>
 
+                                <div className="form-group" style={{marginBottom:"0"}}>
+                                    <textarea rows="4" cols="51" name="note" id="note" placeholder="Include any notes here..." value={this.state.note}
+                                        onChange={this.handleChange} />
+                                </div>
+
+                                
                                 <div className="form-group form-button">
                                     <input type="submit" name="create" id="create" className="form-submit-btn" value="Create" />
                                 </div>
