@@ -30,3 +30,7 @@
   .form-submit-btn:hover,.add-btn:hover {
     background: #049fd6;
   }
+
+  .modal-form{
+    margin: 1rem;
+  }

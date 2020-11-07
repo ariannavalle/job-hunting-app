@@ -18,15 +18,15 @@ export default class card extends Component {
                         ...provided.draggableProps.style,
                     };
                     return (<div
-                        className="card"
+                        className="card-tile"
                         ref={provided.innerRef}
                         {...provided.dragHandleProps}
                         {...provided.draggableProps}
                         style={style}
                     >
-                        <div className="card-header">{title}</div>
-                        <div className="card-subheader"><BsBuilding /> {company}</div>
-                        <div className="card-subheader">{location ? (<MdLocationOn style={{ color: "#f40810" }} />) : null} {location}</div>
+                        <div className="card-tile-header">{title}</div>
+                        <div className="card-tile-subheader"><BsBuilding /> {company}</div>
+                        <div className="card-tile-subheader">{location ? (<MdLocationOn style={{ color: "#f40810" }} />) : null} {location}</div>
                         {/*<div>Date Applied: {date}</div>
                         <div>Notes: {note}</div> */}
 

@@ -1,15 +1,15 @@
-.card {
+.card-tile {
     margin: 8px;
     padding: 1rem;
     background-color: white;
     border-radius: 8px;
 }
 
-.card-header {
+.card-tile-header {
     font-size: 1.7rem;
 }
 
-.card-subheader {
+.card-tile-subheader {
     font-size: 1.1rem;
     margin: 8px;
 }
