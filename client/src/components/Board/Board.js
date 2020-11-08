@@ -74,7 +74,7 @@ export default class Board extends Component {
         let totalJobs = jobsInColumns.reduce((accum, curr) => {
             return accum + curr.cards.length
         }, 0)
-        let interestedJobs = columns[Object.keys(columns)[0]].cards.length
+        let interestedJobs = columns[Object.keys(columns)[0]].cards?.length
         return totalJobs - interestedJobs;
     }
 
