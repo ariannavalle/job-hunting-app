@@ -43,8 +43,8 @@ router.post('/api/cards/:id/update', (req, res, next) => {
 // <form action="/cards/{{this._id}}/delete" method="post">
 router.post('/api/cards/:cardId/delete', (req, res, next) => {
   Card.findByIdAndRemove(req.params.cardId)
-    .then(() => res.json({ message: 'Successfully deleted!' }))
-    .catch(err => res.status(500).json({ message: 'Failed to delete card.' }));
+    .then(() => res.json({ successMessage: 'Successfully deleted!' }))
+    .catch(err => res.status(500).json({ failureMessage: 'Failed to delete card.' }));
 });
 
 // ****************************************************************************************
