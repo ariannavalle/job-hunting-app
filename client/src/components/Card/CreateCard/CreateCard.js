@@ -1,9 +1,9 @@
 import React from 'react'
-import CARD_SERVICE from "../../services/CardService"
+import CARD_SERVICE from "../../../services/CardService"
 import { MdAdd, MdWork, MdLocationOn, MdWeb } from "react-icons/md";
 import { BsBuilding, BsCalendar } from "react-icons/bs";
-import './CreateCard.css'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import './CreateCard.css'
 
 export default class CreateCard extends React.Component {
     state = {

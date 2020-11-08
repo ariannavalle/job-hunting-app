@@ -1,5 +1,4 @@
 import React from 'react'
-import CARD_SERVICE from '../../services/CardService'
 import { MdLocationOn, MdWeb } from "react-icons/md";
 import { BsBuilding, BsCalendar } from "react-icons/bs";
 import { BiNote } from "react-icons/bi";
@@ -28,6 +27,8 @@ export default class CardDetails extends React.Component {
                     <div className="details">{postingURL}</div>
                     <Button color="danger" className="float-right" 
                     onClick={() => {deleteCard(_id);toggleModal({});displayNotification()}}>Delete</Button>
+                    <Button color="light" className="float-right edit-btn" 
+                    onClick={() => {deleteCard(_id);toggleModal({});displayNotification()}}>Edit</Button>
                 </ModalBody>
             </Modal>
         )

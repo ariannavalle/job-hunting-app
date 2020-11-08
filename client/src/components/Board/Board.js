@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Column from '../Column/Column'
-import CreateCard from '../Card/CreateCard'
 import { DragDropContext } from 'react-beautiful-dnd'
-import './Board.css'
-import CardDetails from '../Card/CardDetails'
+import Column from '../Column/Column'
+import CreateCard from '../Card/CreateCard/CreateCard'
+import CardDetails from '../Card/CardDetails/CardDetails'
 import { Alert } from 'reactstrap';
+import './Board.css'
 
 export default class Board extends Component {
     state = {

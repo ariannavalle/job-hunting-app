@@ -20,3 +20,16 @@ margin: 1rem;
 .details-icon {
     margin-right: .5rem;
 }
+
+.edit-btn {
+    width: 72px;
+    background-color: #3dbbe6;
+    color: white;
+    margin-right: 1rem;
+}
+
+.edit-btn:hover {
+    background: #049fd6;
+    color: white;
+} 
+
