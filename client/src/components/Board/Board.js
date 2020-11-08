@@ -8,31 +8,43 @@ import './Board.css'
 
 export default class Board extends Component {
     state = {
-        modalIsOpen: false,
+        displayDetailsModal: false,
+        displayEditModal: false,
         selectedCard: {},
-        notificationIsVisble: false,
+        displayNotification: false,
     };
 
-    // DragDropContext => board
-    // Droppable => columns
-    // Draggable => cards
-
-    toggleModal = (card) => {
+    setCurrentCard = (card) => {
         this.setState({
-            modalIsOpen: !this.state.modalIsOpen,
             selectedCard: card,
+        })
+    }
+    toggleDetailsModal = () => {
+        this.setState({
+            displayDetailsModal: !this.state.displayDetailsModal,
         });
     };
 
-    displayNotification = ()=>{
-        this.setState({notificationIsVisble:true},()=>{
-          window.setTimeout(()=>{
-            this.setState({notificationIsVisble:false})
-          },2000)
+    toggleEditModal = () => {
+        this.setState({
+            displayEditModal: !this.state.displayEditModal,
         });
-      }
+    };
+
+    displayNotification = () => {
+        this.setState({ displayNotification: true }, () => {
+            window.setTimeout(() => {
+                this.setState({ displayNotification: false })
+            }, 2000)
+        });
+    }
 
     onDragEnd = result => {
+
+        // DragDropContext => board
+        // Droppable => columns
+        // Draggable => cards
+
         const { destination, source, draggableId } = result;
         const { columns, replaceColumns } = this.props;
 
@@ -97,8 +109,8 @@ export default class Board extends Component {
         return (
             <div className="board-container">
 
-                <Alert color="warning" isOpen={this.state.notificationIsVisble}>{successMessage}</Alert>
-        
+                <Alert color="warning" isOpen={this.state.displayNotification}>{successMessage}</Alert>
+
                 <div className="welcome-msg">
                     <h2>Welcome, {`${currentUser.name}.`}</h2>
                     <div style={{ color: "#777" }}>You have applied to <b>{this.getJobsApplied()}</b> {this.getMsg()} </div>
@@ -118,7 +130,7 @@ export default class Board extends Component {
                 <CreateCard columns={columns} updateCardState={updateCardState}
                     updateColumnState={updateColumnState} replaceColumns={replaceColumns} />
 
-                <CardDetails card={this.state.selectedCard} deleteCard={deleteCard} modalIsOpen={this.state.modalIsOpen} toggleModal={this.toggleModal} displayNotification={this.displayNotification}/>
+                <CardDetails card={this.state.selectedCard} deleteCard={deleteCard} displayDetailsModal={this.state.displayDetailsModal} toggleDetailsModal={this.toggleDetailsModal} displayEditModal={this.state.displayEditModal} toggleEditModal={this.toggleEditModal} displayNotification={this.displayNotification} />
 
                 <DragDropContext
                     // onDragStart
@@ -129,7 +141,7 @@ export default class Board extends Component {
                         {Object.values(columns).map((column, index) => {
                             return (
                                 <div key={column._id}>
-                                    <Column column={column} index={index} toggleModal={this.toggleModal} />
+                                    <Column column={column} index={index} toggleDetailsModal={this.toggleDetailsModal} setCurrentCard={this.setCurrentCard} />
                                 </div>
                             );
                         })}

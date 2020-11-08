@@ -119,7 +119,6 @@ export default class CreateCard extends React.Component {
                                     <textarea rows="4" cols="51" name="note" id="note" placeholder="Include any notes here..." value={note}
                                         onChange={this.handleChange} />
                                 </div>
-
                                 
                                 <div className="form-group form-button">
                                     <input type="submit" name="create" id="create" className="form-submit-btn" value="Create" />

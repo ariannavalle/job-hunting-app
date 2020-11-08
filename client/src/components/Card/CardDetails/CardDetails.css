@@ -4,17 +4,13 @@
 }
 
 .details-container {
-margin: 1rem;
+    margin: 1rem;
 }
 
 .details {
     color: #777;
     font-weight: bold;
     margin: .1rem 0 1rem 1.8rem;
-}
-
-.details:hover {
-    background-color: #ccc;
 }
 
 .details-icon {
@@ -31,5 +27,9 @@ margin: 1rem;
 .edit-btn:hover {
     background: #049fd6;
     color: white;
-} 
+}
 
+.edit-input>input {
+    padding: 6px 0 !important;
+    margin-bottom: 1rem;
+}

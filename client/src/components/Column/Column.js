@@ -22,7 +22,7 @@ export default class column extends Component {
 
     render() {
         const { _id, title, cards } = this.props.column;
-        const { index } = this.props;
+        const { index, toggleDetailsModal, setCurrentCard } = this.props;
 
         return (
             <div className="column">
@@ -43,7 +43,7 @@ export default class column extends Component {
                             >
                                 {cards.map((card, index) => {
                                     return (
-                                        <div key={card._id} onClick={() => this.props.toggleModal(card)}>
+                                        <div key={card._id} onClick={() => {toggleDetailsModal();setCurrentCard(card)}}>
                                             <Card card={card} index={index} />
                                         </div>
                                     )
