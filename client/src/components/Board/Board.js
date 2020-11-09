@@ -19,6 +19,7 @@ export default class Board extends Component {
             selectedCard: card,
         })
     }
+
     toggleDetailsModal = () => {
         this.setState({
             displayDetailsModal: !this.state.displayDetailsModal,
