@@ -61,7 +61,7 @@ export default class CardDetails extends React.Component {
         return (
             <>
                 {displayDetailsModal &&
-                    (<Modal centered isOpen={displayDetailsModal} toggle={() => toggleDetailsModal({})}>
+                    (<Modal size="lg" centered isOpen={displayDetailsModal} toggle={() => toggleDetailsModal({})}>
                         <ModalHeader cssModule={{ 'modal-title': 'w-100 text-center' }}>{title}</ModalHeader>
 
                         <ModalBody className="details-container">
@@ -92,7 +92,7 @@ export default class CardDetails extends React.Component {
 
                 { displayEditModal && (
 
-                    <Modal centered isOpen={displayEditModal} toggle={() => toggleEditModal({})}>
+                    <Modal size="lg" centered isOpen={displayEditModal} toggle={() => toggleEditModal({})}>
                         <ModalHeader cssModule={{ 'modal-title': 'w-100 text-center' }}>{title} (EDIT)</ModalHeader>
                         <ModalBody className="details-container">
 
@@ -135,7 +135,7 @@ export default class CardDetails extends React.Component {
                                 <BiNote className="details-icon" /> Notes
                             </div>
                             <div className="edit-input">
-                                <textarea rows="4" cols="51" name="note" id="note" style={{ marginTop: ".5rem", marginBottom: "1.5rem" }} placeholder={note} value={note} onChange={this.handleChange} />
+                                <textarea rows="5" cols="51" name="note" id="note" style={{ marginTop: ".5rem", marginBottom: "1.5rem", width:"100%" }} placeholder={note} value={note} onChange={this.handleChange} />
                             </div>
 
                             <Button color="light" className="float-right edit-btn"
