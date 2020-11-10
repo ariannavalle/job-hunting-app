@@ -56,27 +56,42 @@ export default class App extends React.Component {
     this.setState({ cards: updateCard });
   };
 
-  updateColumnState = async (column) => {
-    await COLUMN_SERVICE.updateColumn(column._id, column)
-    const updateColumn = { ...this.state.columns, column };
-    this.setState({ columns: updateColumn });
-  };
 
-  deleteCard = id => {
+
+  deleteCard = (id) => {
     CARD_SERVICE.deleteCard(id)
     .then((deleteRes)=> {
       console.log(deleteRes);
-      COLUMN_SERVICE.getColumns()
-          .then( response => {
-            const { columns } = response.data;
-            const { successMessage } = deleteRes.data;
-            this.setState({columns, successMessage})
-          })
+      // COLUMN_SERVICE.getColumns()
+      //     .then( response => {
+      //       const { columns } = response.data;
+      //       const { successMessage } = deleteRes.data;
+      //       this.setState({columns, successMessage})
+      //     })
+      const { successMessage } = deleteRes.data;
+      const columnId = Object.values(this.state.columns).find(col => col.cards.find(card => card._id === id))._id;
+      const column = { 
+        ...this.state.columns[columnId],
+        cards: this.state.columns[columnId].cards.filter(card => card._id !== id),
+      };
+      const cards = { ...this.state.cards };
+      delete cards[id];
+      this.setState({
+        columns: { ...this.state.columns, [columnId]: column },
+        cards,
+        successMessage,
+      });
     })
     .catch(err => {
       console.log(err)
      });
   }
+
+  updateColumnState = async (column) => {
+    await COLUMN_SERVICE.updateColumn(column._id, column)
+    const updateColumn = { ...this.state.columns, column };
+    this.setState({ columns: updateColumn });
+  };
 
   replaceColumns = async (column1, column2) => {
     this.setState({

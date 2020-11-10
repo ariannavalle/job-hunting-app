@@ -44,7 +44,7 @@ export default class column extends Component {
                                 {cards.map((card, index) => {
                                     return (
                                         <div key={card._id} onClick={() => {toggleDetailsModal();setCurrentCard(card)}}>
-                                            <Card card={card} index={index} />
+                                            <Card card={card} index={index} column={_id} />
                                         </div>
                                     )
                                 })
