@@ -12,6 +12,7 @@ export default class Board extends Component {
         displayEditModal: false,
         selectedCard: {},
         displayNotification: false,
+        // changesToSubmit: {},
     };
 
     setCurrentCard = (card) => {
@@ -38,6 +39,18 @@ export default class Board extends Component {
                 this.setState({ displayNotification: false })
             }, 2000)
         });
+    }
+
+    handleChange = (event) => {
+        const { name, value } = event.target;
+        const selectedCard = { ...this.state.selectedCard, [name]: value };
+        this.setState({
+            selectedCard,
+            // changesToSubmit: {
+            //     ...this.state.changesToSubmit,
+            //     [name]: value,
+            // }
+        })
     }
 
     onDragEnd = result => {
@@ -131,7 +144,7 @@ export default class Board extends Component {
                 <CreateCard columns={columns} updateCardState={updateCardState}
                     updateColumnState={updateColumnState} replaceColumns={replaceColumns} />
 
-                <CardDetails card={this.state.selectedCard} deleteCard={deleteCard} displayDetailsModal={this.state.displayDetailsModal} toggleDetailsModal={this.toggleDetailsModal} displayEditModal={this.state.displayEditModal} toggleEditModal={this.toggleEditModal} displayNotification={this.displayNotification} />
+                <CardDetails card={this.state.selectedCard} deleteCard={deleteCard} displayDetailsModal={this.state.displayDetailsModal} toggleDetailsModal={this.toggleDetailsModal} displayEditModal={this.state.displayEditModal} toggleEditModal={this.toggleEditModal} displayNotification={this.displayNotification}  handleChange={this.handleChange} />
 
                 <DragDropContext
                     // onDragStart
