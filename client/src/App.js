@@ -56,28 +56,6 @@ export default class App extends React.Component {
     this.setState({ cards: updateCard });
   };
 
-  deleteCard = (id) => {
-    CARD_SERVICE.deleteCard(id)
-    .then((deleteRes)=> {
-      const { successMessage } = deleteRes.data;
-      const columnId = Object.values(this.state.columns).find(col => col.cards.find(card => card._id === id))._id;
-      const column = { 
-        ...this.state.columns[columnId],
-        cards: this.state.columns[columnId].cards.filter(card => card._id !== id),
-      };
-      const cards = { ...this.state.cards };
-      delete cards[id];
-      this.setState({
-        columns: { ...this.state.columns, [columnId]: column },
-        cards,
-        successMessage,
-      });
-    })
-    .catch(err => {
-      console.log(err)
-     });
-  }
-
   updateColumnState = async (column) => {
     await COLUMN_SERVICE.updateColumn(column._id, column)
     const updateColumn = { ...this.state.columns, column };
@@ -94,6 +72,49 @@ export default class App extends React.Component {
     });
     await Promise.all([COLUMN_SERVICE.updateColumn(column1._id, column1), COLUMN_SERVICE.updateColumn(column2._id, column2)]);
   };
+
+  editCard = (id, data) => {
+    CARD_SERVICE.updateCard(id, data)
+      .then((response) => {
+        const { successMessage } = response.data;
+        const columnId = Object.values(this.state.columns).find(col => col.cards.find(card => card._id === id))._id;
+
+        COLUMN_SERVICE.getColumnDetails(columnId)
+          .then((res) => {
+            console.log(res.data.column)
+            this.setState({
+              columns: { ...this.state.columns, [columnId]: res.data.column },
+              successMessage,
+            });
+          })
+      })
+      .catch(err => {
+        console.log(err)
+      });
+
+  }
+
+  deleteCard = (id) => {
+    CARD_SERVICE.deleteCard(id)
+      .then((deleteRes) => {
+        const { successMessage } = deleteRes.data;
+        const columnId = Object.values(this.state.columns).find(col => col.cards.find(card => card._id === id))._id;
+        const column = {
+          ...this.state.columns[columnId],
+          cards: this.state.columns[columnId].cards.filter(card => card._id !== id),
+        };
+        const cards = { ...this.state.cards };
+        delete cards[id];
+        this.setState({
+          columns: { ...this.state.columns, [columnId]: column },
+          cards,
+          successMessage,
+        });
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }
 
   render() {
     console.log('user: ', this.state.currentUser);
@@ -131,6 +152,7 @@ export default class App extends React.Component {
                     updateColumnState={this.updateColumnState}
                     replaceColumns={this.replaceColumns}
                     deleteCard={this.deleteCard}
+                    editCard={this.editCard}
                   />}
               />)
             }

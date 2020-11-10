@@ -2,57 +2,18 @@ import React from 'react'
 import { MdLocationOn, MdWeb } from "react-icons/md";
 import { BsBuilding, BsCalendar } from "react-icons/bs";
 import { BiNote } from "react-icons/bi";
-import './CardDetails.css'
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import './CardDetails.css'
 
 export default class CardDetails extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const { title, company, date, note, location, postingURL } = this.state;
-
-    //     // create card in db
-    //     CARD_SERVICE.createCard({ title, company, date, note, location, postingURL })
-    //         .then((serverResponse) => {
-    //             const { card } = serverResponse.data;
-
-    //             // set the state
-    //             this.props.updateCardState(card);
-
-    //             // insert newly created card in first column
-    //             const { columns } = this.props;
-    //             columns[Object.keys(columns)[0]].cards.push(card)
-
-    //             // update column in db and state
-
-    //             // this is creating a dupe
-    //             // this.props.updateColumnState(columns[Object.keys(columns)[0]])
-
-    //             this.props.replaceColumns(columns[Object.keys(columns)[0]], columns[Object.keys(columns)[0]])
-
-    //             this.toggleModal()
-
-    //             // clear form after submission
-    //             this.setState({
-    //                 title: '',
-    //                 company: '',
-    //                 date: '',
-    //                 note: '',
-    //                 location: '',
-    //                 postingURL: '',
-    //             })
-
-    //         })
-    //         .catch(err => {
-    //             if (err.response && err.response.data) {
-    //                 return this.setState({ message: err.response.data.message });
-    //             }
-    //         });
     }
 
     render() {
         const { _id, title, company, location, date, note, postingURL } = this.props.card;
-        const { toggleDetailsModal, toggleEditModal, deleteCard, displayDetailsModal, displayEditModal, displayNotification, column } = this.props;
+        const { toggleDetailsModal, toggleEditModal, editCard, deleteCard, displayDetailsModal, displayEditModal, displayNotification, column, card } = this.props;
         return (
             <>
                 {displayDetailsModal &&
@@ -91,50 +52,54 @@ export default class CardDetails extends React.Component {
                         <ModalHeader cssModule={{ 'modal-title': 'w-100 text-center' }}>{title} (EDIT)</ModalHeader>
                         <ModalBody className="details-container">
 
-                            <div className="details-header">
-                                <BsBuilding className="details-icon" /> Job Title
-                            </div>
-                            <div className="edit-input">
-                                <input type="text" name="title" id="title" placeholder={title} required value={title} onChange={this.props.handleChange} />
-                            </div>
+                            <form onSubmit={this.handleSubmit}>
 
-                            <div className="details-header">
-                                <BsBuilding className="details-icon" /> Company
+                                <div className="details-header">
+                                    <BsBuilding className="details-icon" /> Job Title
                             </div>
-                            <div className="edit-input">
-                                <input type="text" name="company" id="company" placeholder={company} required value={company} onChange={this.props.handleChange} />
-                            </div>
+                                <div className="edit-input">
+                                    <input type="text" name="title" id="title" placeholder={title} required value={title} onChange={this.props.handleChange} />
+                                </div>
 
-                            <div className="details-header">
-                                <MdLocationOn className="details-icon" /> Location
+                                <div className="details-header">
+                                    <BsBuilding className="details-icon" /> Company
                             </div>
-                            <div className="edit-input">
-                                <input type="text" name="location" id="location" placeholder={location} value={location} onChange={this.props.handleChange} />
-                            </div>
+                                <div className="edit-input">
+                                    <input type="text" name="company" id="company" placeholder={company} required value={company} onChange={this.props.handleChange} />
+                                </div>
 
-                            <div className="details-header">
-                                <BsCalendar className="details-icon" /> Date Applied
+                                <div className="details-header">
+                                    <MdLocationOn className="details-icon" /> Location
                             </div>
-                            <div className="edit-input">
-                                <input type="text" name="date" id="date" placeholder={date} value={date} onChange={this.props.handleChange} />
-                            </div>
+                                <div className="edit-input">
+                                    <input type="text" name="location" id="location" placeholder={location} value={location} onChange={this.props.handleChange} />
+                                </div>
 
-                            <div className="details-header">
-                                <MdWeb className="details-icon" /> URL to Job Posting
+                                <div className="details-header">
+                                    <BsCalendar className="details-icon" /> Date Applied
                             </div>
-                            <div className="edit-input">
-                                <input type="text" name="postingURL" id="postingURL" placeholder={postingURL} value={postingURL} onChange={this.props.handleChange} />
-                            </div>
+                                <div className="edit-input">
+                                    <input type="text" name="date" id="date" placeholder={date} value={date} onChange={this.props.handleChange} />
+                                </div>
 
-                            <div className="details-header">
-                                <BiNote className="details-icon" /> Notes
+                                <div className="details-header">
+                                    <MdWeb className="details-icon" /> URL to Job Posting
                             </div>
-                            <div className="edit-input">
-                                <textarea rows="5" cols="51" name="note" id="note" style={{ marginTop: ".5rem", marginBottom: "1.5rem", width:"100%" }} placeholder={note} value={note} onChange={this.props.handleChange} />
-                            </div>
+                                <div className="edit-input">
+                                    <input type="text" name="postingURL" id="postingURL" placeholder={postingURL} value={postingURL} onChange={this.props.handleChange} />
+                                </div>
 
-                            <Button color="light" className="float-right edit-btn"
-                                onClick={() => { toggleEditModal(); displayNotification() }}>Save</Button>
+                                <div className="details-header">
+                                    <BiNote className="details-icon" /> Notes
+                            </div>
+                                <div className="edit-input">
+                                    <textarea rows="5" cols="51" name="note" id="note" style={{ marginTop: ".5rem", marginBottom: "1.5rem", width: "100%" }} placeholder={note} value={note} onChange={this.props.handleChange} />
+                                </div>
+
+                                <Button color="light" className="float-right edit-btn"
+                                    onClick={() => { editCard(_id, card); toggleEditModal(); displayNotification() }}>Save</Button>
+                            </form>
+
                         </ModalBody>
                     </Modal>
                 )}

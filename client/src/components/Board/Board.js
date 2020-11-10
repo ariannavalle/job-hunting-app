@@ -117,13 +117,13 @@ export default class Board extends Component {
     }
 
     render() {
-        const { currentUser, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, successMessage } = this.props;
+        const { currentUser, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, editCard, successMessage } = this.props;
 
 
         return (
             <div className="board-container">
 
-                <Alert color="warning" isOpen={this.state.displayNotification}>{successMessage}</Alert>
+                <Alert color="success" isOpen={this.state.displayNotification}><b>{successMessage}</b></Alert>
 
                 <div className="welcome-msg">
                     <h2>Welcome, {`${currentUser.name}.`}</h2>
@@ -144,7 +144,7 @@ export default class Board extends Component {
                 <CreateCard columns={columns} updateCardState={updateCardState}
                     updateColumnState={updateColumnState} replaceColumns={replaceColumns} />
 
-                <CardDetails card={this.state.selectedCard} deleteCard={deleteCard} displayDetailsModal={this.state.displayDetailsModal} toggleDetailsModal={this.toggleDetailsModal} displayEditModal={this.state.displayEditModal} toggleEditModal={this.toggleEditModal} displayNotification={this.displayNotification}  handleChange={this.handleChange} />
+                <CardDetails card={this.state.selectedCard} deleteCard={deleteCard} displayDetailsModal={this.state.displayDetailsModal} toggleDetailsModal={this.toggleDetailsModal} displayEditModal={this.state.displayEditModal} toggleEditModal={this.toggleEditModal} displayNotification={this.displayNotification} handleChange={this.handleChange} editCard={editCard} />
 
                 <DragDropContext
                     // onDragStart
