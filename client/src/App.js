@@ -56,18 +56,9 @@ export default class App extends React.Component {
     this.setState({ cards: updateCard });
   };
 
-
-
   deleteCard = (id) => {
     CARD_SERVICE.deleteCard(id)
     .then((deleteRes)=> {
-      console.log(deleteRes);
-      // COLUMN_SERVICE.getColumns()
-      //     .then( response => {
-      //       const { columns } = response.data;
-      //       const { successMessage } = deleteRes.data;
-      //       this.setState({columns, successMessage})
-      //     })
       const { successMessage } = deleteRes.data;
       const columnId = Object.values(this.state.columns).find(col => col.cards.find(card => card._id === id))._id;
       const column = { 
