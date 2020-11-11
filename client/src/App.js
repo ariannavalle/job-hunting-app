@@ -8,7 +8,6 @@ import COLUMN_SERVICE from './services/ColumnService'
 
 import Signup from './components/Authentication/Signup/Signup';
 import Login from './components/Authentication/Login/Login';
-import Navbar from './components/NavBar/NavBar'
 import Board from './components/Board/Board'
 
 import ProtectedRoute from './components/ProtectedRoute';
@@ -124,11 +123,6 @@ export default class App extends React.Component {
       <div className='App'>
         <BrowserRouter>
 
-          {this.state.currentUser && (<nav>
-            <Navbar currentUser={this.state.currentUser} onUserChange={this.updateUser} />
-          </nav>)}
-
-
           <Switch>
             {/* <Route path='/somePage' component={someComponent} /> */}
 
@@ -148,6 +142,7 @@ export default class App extends React.Component {
                     cards={this.state.cards}
                     columns={this.state.columns}
                     successMessage={this.state.successMessage}
+                    onUserChange={this.updateUser}
                     updateCardState={this.updateCardState}
                     updateColumnState={this.updateColumnState}
                     replaceColumns={this.replaceColumns}

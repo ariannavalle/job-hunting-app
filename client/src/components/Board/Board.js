@@ -3,6 +3,7 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import Column from '../Column/Column'
 import CreateCard from '../Card/CreateCard/CreateCard'
 import CardDetails from '../Card/CardDetails/CardDetails'
+import Sidebar from '../Sidebar/Sidebar'
 import { Alert } from 'reactstrap';
 import './Board.css'
 
@@ -117,11 +118,13 @@ export default class Board extends Component {
     }
 
     render() {
-        const { currentUser, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, editCard, successMessage } = this.props;
+        const { currentUser, onUserChange, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, editCard, successMessage } = this.props;
 
 
         return (
             <div className="board-container">
+
+                <Sidebar onUserChange={onUserChange}/>
 
                 <Alert color="success" isOpen={this.state.displayNotification}><b>{successMessage}</b></Alert>
 

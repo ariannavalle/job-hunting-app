@@ -1,5 +1,6 @@
 .board-container {
     background-color: white;
+    margin-left: 3vw;
 }
 
 .welcome-msg {
@@ -12,12 +13,12 @@
     left: 0;
     right: 0;
     z-index: 7000;
-  }
+}
 
 /* desktop */
+
 @media only screen and (min-width: 768px) {
     .board {
         display: flex;
     }
 }
-
