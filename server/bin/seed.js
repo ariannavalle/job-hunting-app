@@ -70,17 +70,20 @@ User
         const columns = [
           { "title":"Interested",
             "cards": 
-            [ cardsFromDB[0]._id, cardsFromDB[4]._id,cardsFromDB[5]._id,cardsFromDB[6]._id,cardsFromDB[7]._id,]
+            [ cardsFromDB[0]._id, cardsFromDB[1]._id]
           },
           { "title":"Applied",
           "cards": 
-          [ cardsFromDB[1]._id, cardsFromDB[2]._id]
+          [ cardsFromDB[2]._id, cardsFromDB[3]._id, cardsFromDB[4]._id]
           },
           { "title":"Interviewing",
             "cards": 
-            [ cardsFromDB[3]._id]
+            [ cardsFromDB[5]._id]
           },
-          { "title":"Rejected"},
+          { "title":"Rejected",
+          "cards": 
+          [ cardsFromDB[6]._id, cardsFromDB[7]._id]
+          },
           { "title":"Hired"}
         ]
         
