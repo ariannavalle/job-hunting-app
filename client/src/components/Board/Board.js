@@ -16,7 +16,6 @@ export default class Board extends Component {
         displayColumnModal: false,
         selectedCard: {},
         displayNotification: false,
-        // changesToSubmit: {},
     };
 
     setCurrentCard = (card) => {
@@ -61,11 +60,7 @@ export default class Board extends Component {
         const { name, value } = event.target;
         const selectedCard = { ...this.state.selectedCard, [name]: value };
         this.setState({
-            selectedCard,
-            // changesToSubmit: {
-            //     ...this.state.changesToSubmit,
-            //     [name]: value,
-            // }
+            selectedCard
         })
     }
 
@@ -133,7 +128,7 @@ export default class Board extends Component {
     }
 
     render() {
-        const { currentUser, onUserChange, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, editCard, successMessage, setCurrentCard } = this.props;
+        const { currentUser, onUserChange, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, editCard, successMessage } = this.props;
 
 
         return (
@@ -196,7 +191,7 @@ export default class Board extends Component {
                                     <Column
                                         column={column} index={index}
                                         toggleDetailsModal={this.toggleDetailsModal} 
-                                        setCurrentCard={setCurrentCard} />
+                                        setCurrentCard={this.setCurrentCard} />
                                 </div>
                             );
                         })}

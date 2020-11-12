@@ -16,6 +16,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 export default class App extends React.Component {
   state = {
     currentUser: null,
+    loading: true,
     cards: [],
     columns: [],
     successMessage: null
@@ -41,7 +42,7 @@ export default class App extends React.Component {
           {}
         );
         const { user } = responseFromServer[2].data; //last
-        this.setState({ cards, columns, currentUser: user });
+        this.setState({ cards, columns, currentUser: user, loading: false });
       })
       .catch((err) => console.log(err));
   };
@@ -51,12 +52,12 @@ export default class App extends React.Component {
   };
 
   updateCardState = cards => {
-    const updateCard = { ...this.state.cards, cards };
+    const updateCard = { ...this.state.cards, [cards._id]: cards };
     this.setState({ cards: updateCard });
   };
 
   updateColumnState = columns => {
-    const updateColumn = { ...this.state.columns, columns };
+    const updateColumn = { ...this.state.columns, [columns._id]: columns };
     this.setState({ columns: updateColumn });
   };
 
@@ -130,30 +131,28 @@ export default class App extends React.Component {
 
 
             {/* if user is logged in, render the board component at the root path*/}
-            {this.state.currentUser &&
-              (<ProtectedRoute
-                path='/'
-                authorized={this.state.currentUser}
-                redirect={'/signup'}
-                render={props =>
-                  <Board {...props}
-                    currentUser={this.state.currentUser}
-                    cards={this.state.cards}
-                    columns={this.state.columns}
-                    successMessage={this.state.successMessage}
-                    onUserChange={this.updateUser}
-                    updateCardState={this.updateCardState}
-                    updateColumnState={this.updateColumnState}
-                    replaceColumns={this.replaceColumns}
-                    deleteCard={this.deleteCard}
-                    editCard={this.editCard}
-                  />}
-              />)
+            {!this.state.loading
+              ? (
+                <ProtectedRoute
+                  path='/'
+                  authorized={this.state.currentUser}
+                  redirect={'/signup'}
+                  render={props =>
+                    <Board {...props}
+                      currentUser={this.state.currentUser}
+                      cards={this.state.cards}
+                      columns={this.state.columns}
+                      successMessage={this.state.successMessage}
+                      onUserChange={this.updateUser}
+                      updateCardState={this.updateCardState}
+                      updateColumnState={this.updateColumnState}
+                      replaceColumns={this.replaceColumns}
+                      deleteCard={this.deleteCard}
+                      editCard={this.editCard}
+                    />}
+                />)
+              : <Route path='/' render={props => <div></div>} />
             }
-
-            {/* otherwise render the signup component in the root path*/}
-            <Route path='/' render={props => <Signup {...props} onUserChange={this.updateUser} />} />
-
           </Switch>
         </BrowserRouter>
       </div>
