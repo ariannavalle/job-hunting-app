@@ -6,6 +6,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import './CreateCard.css'
 
 export default class CreateCard extends React.Component {
+
     state = {
         title: '',
         company: '',
@@ -45,8 +46,8 @@ export default class CreateCard extends React.Component {
 
                 this.props.replaceColumns(columns[Object.keys(columns)[0]], columns[Object.keys(columns)[0]])
 
-                this.toggleModal()
-                
+                this.props.toggleCreateModal()
+
                 // clear form after submission
                 this.setState({
                     title: '',
@@ -65,21 +66,13 @@ export default class CreateCard extends React.Component {
             });
     }
 
-    toggleModal = () => {
-        this.setState({
-            modalIsOpen: !this.state.modalIsOpen
-        })
-    }
-
     render() {
         const { title, company, date, note, location, postingURL, message } = this.state;
         return (
             <div>
-                <div className="add-btn" onClick={this.toggleModal}><MdAdd /></div>
 
-
-                <Modal centered isOpen={this.state.modalIsOpen}>
-                    <ModalHeader toggle={this.toggleModal}>Add New Job</ModalHeader>
+                <Modal centered isOpen={this.props.displayCreateModal}>
+                    <ModalHeader toggle={this.props.toggleCreateModal}>Add New Job</ModalHeader>
                     <ModalBody>
                         <div className="modal-form">
 
@@ -115,11 +108,11 @@ export default class CreateCard extends React.Component {
                                         onChange={this.handleChange} />
                                 </div>
 
-                                <div className="form-group" style={{marginBottom:"0"}}>
+                                <div className="form-group" style={{ marginBottom: "0" }}>
                                     <textarea rows="4" cols="51" name="note" id="note" placeholder="Include any notes here..." value={note}
                                         onChange={this.handleChange} />
                                 </div>
-                                
+
                                 <div className="form-group form-button">
                                     <input type="submit" name="create" id="create" className="form-submit-btn" value="Create" />
                                 </div>

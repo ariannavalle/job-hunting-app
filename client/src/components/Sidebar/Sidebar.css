@@ -43,7 +43,7 @@
     width: 250px;
 }
 
-.main-menu li>a {
+.main-menu li>span {
     position: relative;
     display: table;
     border-collapse: collapse;
@@ -81,7 +81,7 @@
     overflow: visible;
 }
 
-a:hover, a:focus {
+span:hover, span:focus {
     text-decoration: none;
 }
 
@@ -99,9 +99,9 @@ nav ul, nav li {
     padding: 0;
 }
 
-.main-menu li:hover>a, nav.main-menu li.active>a, .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus, .no-touch .dashboard-page nav.dashboard-menu ul li:hover a, .dashboard-page nav.dashboard-menu ul li.active a {
+.main-menu li:hover>span, nav.main-menu li.active>span, .dropdown-menu>li>span:hover, .dropdown-menu>li>span:focus, .dropdown-menu>.active>span, .dropdown-menu>.active>span:hover, .dropdown-menu>.active>span:focus, .no-touch .dashboard-page nav.dashboard-menu ul li:hover span, .dashboard-page nav.dashboard-menu ul li.active span {
     color: #fff;
-    background-color: #5fa2db;
+    background-color: #4292dc;
 }
 
 .area {
@@ -109,6 +109,10 @@ nav ul, nav li {
     background: #e2e2e2;
     width: 100%;
     height: 100%;
+}
+
+.mobile {
+    display: none;
 }
 
 /* mobile botton nav bar */

@@ -1,36 +1,36 @@
-.add-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 3rem;
-    height: 3rem;
-    margin: 1.5rem;
-    background-color: #3dbbe6;
-    border-radius: 50%;
-    color: white;
-    padding: .2rem;
-    font-size: 3rem;
+.add-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin: 1.5rem;
+  background-color: #3dbbe6;
+  border-radius: 50%;
+  color: white;
+  padding: .2rem;
+  font-size: 3rem;
 }
 
 .form-submit-btn {
-    background: #3dbbe6;
-    color: #fff;
-    font-size: 1.4rem;
-    border-bottom: none;
-    padding: 15px 39px;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    -ms-border-radius: 5px;
-    margin-top: 25px;
-    cursor: pointer;
-  }
-  
-  .form-submit-btn:hover,.add-btn:hover {
-    background: #049fd6;
-  }
+  background: #6dabe4;
+  color: #fff;
+  font-size: 1.4rem;
+  border-bottom: none;
+  padding: 15px 39px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  margin-top: 25px;
+  cursor: pointer;
+}
 
-  .modal-form{
-    margin: 1rem;
-  }
+.form-submit-btn:hover, .add-btn:hover {
+  background: #4292dc;
+}
+
+.modal-form {
+  margin: 1rem;
+}

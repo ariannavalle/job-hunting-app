@@ -13,51 +13,47 @@ export default class Sidebar extends Component {
             .catch(err => console.log(err));
     };
 
-    componentDidMount = () => {
-
-    }
-
     render() {
         return (
             <div className="sidebar">
                 <div class="area"></div>
                 <nav class="main-menu">
                     <ul>
-                        <li>
-                            <a href="#">
+                        <li onClick={this.props.toggleCreateModal}>
+                            <span>
                                 <MdAddCircleOutline class="menu-icon menu-add" />
                                 <span class="nav-text">Add new job</span>
-                            </a>
+                            </span>
                         </li>
 
                         <li class="has-subnav">
-                            <a href="#">
+                            <span>
                                 <FaListUl class="menu-icon" />
                                 <span class="nav-text">Add new list</span>
-                            </a>
+                            </span>
                         </li>
 
                         <li>
-                            <a href="#">
+                            <span>
                                 <GoGraph class="menu-icon" />
                                 <span class="nav-text">Graphs and Statistics</span>
-                            </a>
+                            </span>
                         </li>
 
                         <li>
-                            <a href="#">
+                            <span>
                                 <FaMapMarkedAlt class="menu-icon" />
                                 <span class="nav-text">Maps</span>
-                            </a>
+                            </span>
                         </li>
                     </ul>
 
                     <ul class="logout">
                         <li onClick={this.logoutAndLiftUserState}>
-                            <a>
+                            <span>
                                 <FaPowerOff class="menu-icon" />
                                 <span class="nav-text">Logout</span>
-                            </a>
+                            </span>
                         </li>
                     </ul>
 
@@ -67,7 +63,7 @@ export default class Sidebar extends Component {
                     <FaListUl class="menu-icon" />
                     <GoGraph class="menu-icon" />
                     <FaMapMarkedAlt class="menu-icon" />
-                    <FaPowerOff class="menu-icon" onClick={this.logoutAndLiftUserState}/>
+                    <FaPowerOff class="menu-icon" onClick={this.logoutAndLiftUserState} />
                 </nav>
             </div >
         )

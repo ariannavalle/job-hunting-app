@@ -9,6 +9,7 @@ import './Board.css'
 
 export default class Board extends Component {
     state = {
+        displayCreateModal: false,
         displayDetailsModal: false,
         displayEditModal: false,
         selectedCard: {},
@@ -25,6 +26,12 @@ export default class Board extends Component {
     toggleDetailsModal = () => {
         this.setState({
             displayDetailsModal: !this.state.displayDetailsModal,
+        });
+    };
+
+    toggleCreateModal = () => {
+        this.setState({
+            displayCreateModal: !this.state.displayCreateModal,
         });
     };
 
@@ -124,7 +131,7 @@ export default class Board extends Component {
         return (
             <div className="board-container">
 
-                <Sidebar onUserChange={onUserChange}/>
+                <Sidebar onUserChange={onUserChange} toggleCreateModal={this.toggleCreateModal} />
 
                 <Alert color="success" isOpen={this.state.displayNotification}><b>{successMessage}</b></Alert>
 
@@ -144,21 +151,33 @@ export default class Board extends Component {
                 } */}
                 {/* test */}
 
-                <CreateCard columns={columns} updateCardState={updateCardState}
-                    updateColumnState={updateColumnState} replaceColumns={replaceColumns} />
+                <CreateCard
+                    columns={columns}
+                    updateCardState={updateCardState}
+                    updateColumnState={updateColumnState}
+                    replaceColumns={replaceColumns}
+                    displayCreateModal={this.state.displayCreateModal}
+                    toggleCreateModal={this.toggleCreateModal}
+                />
 
-                <CardDetails card={this.state.selectedCard} deleteCard={deleteCard} displayDetailsModal={this.state.displayDetailsModal} toggleDetailsModal={this.toggleDetailsModal} displayEditModal={this.state.displayEditModal} toggleEditModal={this.toggleEditModal} displayNotification={this.displayNotification} handleChange={this.handleChange} editCard={editCard} />
+                <CardDetails
+                    card={this.state.selectedCard}
+                    deleteCard={deleteCard}
+                    displayDetailsModal={this.state.displayDetailsModal}
+                    displayEditModal={this.state.displayEditModal}
+                    toggleDetailsModal={this.toggleDetailsModal}
+                    toggleEditModal={this.toggleEditModal}
+                    displayNotification={this.displayNotification}
+                    handleChange={this.handleChange} editCard={editCard} />
 
-                <DragDropContext
-                    // onDragStart
-                    // onDragUpdate
-                    onDragEnd={this.onDragEnd}
-                >
+                <DragDropContext onDragEnd={this.onDragEnd}>
                     <div className="board">
                         {Object.values(columns).map((column, index) => {
                             return (
                                 <div key={column._id}>
-                                    <Column column={column} index={index} toggleDetailsModal={this.toggleDetailsModal} setCurrentCard={this.setCurrentCard} />
+                                    <Column
+                                        column={column} index={index}
+                                        toggleDetailsModal={this.toggleDetailsModal} setCurrentCard={this.setCurrentCard} />
                                 </div>
                             );
                         })}
