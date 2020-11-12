@@ -55,9 +55,8 @@ export default class App extends React.Component {
     this.setState({ cards: updateCard });
   };
 
-  updateColumnState = async (column) => {
-    await COLUMN_SERVICE.updateColumn(column._id, column)
-    const updateColumn = { ...this.state.columns, column };
+  updateColumnState = columns => {
+    const updateColumn = { ...this.state.columns, columns };
     this.setState({ columns: updateColumn });
   };
 

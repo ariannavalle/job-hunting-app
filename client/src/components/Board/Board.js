@@ -3,6 +3,7 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import Column from '../Column/Column'
 import CreateCard from '../Card/CreateCard/CreateCard'
 import CardDetails from '../Card/CardDetails/CardDetails'
+import CreateColumn from '../Column/CreateColumn/CreateColumn'
 import Sidebar from '../Sidebar/Sidebar'
 import { Alert } from 'reactstrap';
 import './Board.css'
@@ -12,6 +13,7 @@ export default class Board extends Component {
         displayCreateModal: false,
         displayDetailsModal: false,
         displayEditModal: false,
+        displayColumnModal: false,
         selectedCard: {},
         displayNotification: false,
         // changesToSubmit: {},
@@ -38,6 +40,12 @@ export default class Board extends Component {
     toggleEditModal = () => {
         this.setState({
             displayEditModal: !this.state.displayEditModal,
+        });
+    };
+
+    toggleColumnModal = () => {
+        this.setState({
+            displayColumnModal: !this.state.displayColumnModal,
         });
     };
 
@@ -125,13 +133,17 @@ export default class Board extends Component {
     }
 
     render() {
-        const { currentUser, onUserChange, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, editCard, successMessage } = this.props;
+        const { currentUser, onUserChange, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, editCard, successMessage, setCurrentCard } = this.props;
 
 
         return (
             <div className="board-container">
 
-                <Sidebar onUserChange={onUserChange} toggleCreateModal={this.toggleCreateModal} />
+                <Sidebar
+                    onUserChange={onUserChange}
+                    toggleCreateModal={this.toggleCreateModal}
+                    toggleColumnModal={this.toggleColumnModal}
+                />
 
                 <Alert color="success" isOpen={this.state.displayNotification}><b>{successMessage}</b></Alert>
 
@@ -170,6 +182,12 @@ export default class Board extends Component {
                     displayNotification={this.displayNotification}
                     handleChange={this.handleChange} editCard={editCard} />
 
+                <CreateColumn
+                    updateColumnState={updateColumnState}
+                    displayColumnModal={this.state.displayColumnModal}
+                    toggleColumnModal={this.toggleColumnModal}
+                />
+
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <div className="board">
                         {Object.values(columns).map((column, index) => {
@@ -177,7 +195,8 @@ export default class Board extends Component {
                                 <div key={column._id}>
                                     <Column
                                         column={column} index={index}
-                                        toggleDetailsModal={this.toggleDetailsModal} setCurrentCard={this.setCurrentCard} />
+                                        toggleDetailsModal={this.toggleDetailsModal} 
+                                        setCurrentCard={setCurrentCard} />
                                 </div>
                             );
                         })}

@@ -26,7 +26,7 @@ export default class Sidebar extends Component {
                             </span>
                         </li>
 
-                        <li class="has-subnav">
+                        <li onClick={this.props.toggleColumnModal}>
                             <span>
                                 <FaListUl class="menu-icon" />
                                 <span class="nav-text">Add new list</span>
