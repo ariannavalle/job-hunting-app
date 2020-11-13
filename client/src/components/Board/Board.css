@@ -1,6 +1,6 @@
 .board-container {
     background-color: white;
-    margin-left: 3vw;
+    margin-bottom: 5rem;
 }
 
 .welcome-msg {
@@ -20,5 +20,9 @@
 @media only screen and (min-width: 768px) {
     .board {
         display: flex;
+    }
+    .board-container {
+        margin-left: 4vw;
+        margin-bottom: 0;
     }
 }
