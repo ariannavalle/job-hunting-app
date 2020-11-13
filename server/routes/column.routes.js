@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Column = require('../models/Column.model');
-
+const Card = require('../models/Card.model');
 // ****************************************************************************************
 // Create
 // ****************************************************************************************
@@ -43,8 +43,8 @@ router.post('/api/columns/:id/update', (req, res) => {
 // <form action="/columns/{{this._id}}/delete" method="post">
 router.post('/api/columns/:columnId/delete', (req, res) => {
   Column.findByIdAndRemove(req.params.columnId)
-    .then(() => res.json({ message: 'Successfully removed!' }))
-    .catch(err => next(err));
+  .then(() => res.json({ successMessage: 'Successfully deleted!' }))
+  .catch(err => res.json({ failureMessage: 'Failed to delete card.' }))
 });
 
 // ****************************************************************************************
