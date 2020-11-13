@@ -20,11 +20,10 @@
 .main-menu {
     background: #212121;
     border-right: 1px solid #e5e5e5;
-    position: absolute;
-    /* top: 0; */
-    bottom: 0;
-    height: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
+    height: 100%;
     width: 60px;
     overflow: hidden;
     -webkit-transition: width .05s linear;
@@ -122,15 +121,15 @@ nav ul, nav li {
         display: none;
     }
     .mobile {
-        /* margin: 1rem; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         background: #212121;
-        /* border-right: 1px solid #e5e5e5; */
         position: fixed;
-        /* top: 0; */
         bottom: 0;
         width: 100%;
         left: 0;
-        /* height: 60px; */
+        height: 60px;
         overflow: hidden;
         -webkit-transition: width .05s linear;
         transition: width .05s linear;
@@ -146,7 +145,6 @@ nav ul, nav li {
         text-align: center;
         vertical-align: middle;
         color: #999;
-        border-left: 1px solid white;
         margin: 0;
         padding: .5rem;
     }

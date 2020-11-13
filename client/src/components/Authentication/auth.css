@@ -167,10 +167,6 @@ h2, h5 {
   -ms-transform: translate(-50%, -50%);
 }
 
-.signup {
-  margin-bottom: 150px;
-}
-
 .signup-content {
   padding: 75px 0;
 }
@@ -572,6 +568,10 @@ label.valid:after {
   }
   .form-title {
     text-align: center;
+  }
+  .landing-body{
+    height: auto;
+    padding: 1rem 0;
   }
 }
 

@@ -59,8 +59,8 @@ export default class Sidebar extends Component {
 
                 </nav>
                 <nav className="mobile">
-                    <MdAddCircleOutline className="menu-icon menu-add" />
-                    <FaListUl className="menu-icon" />
+                    <MdAddCircleOutline className="menu-icon menu-add" onClick={this.props.toggleCreateModal} />
+                    <FaListUl className="menu-icon" onClick={this.props.toggleColumnModal} />
                     <GoGraph className="menu-icon" />
                     <FaMapMarkedAlt className="menu-icon" />
                     <FaPowerOff className="menu-icon" onClick={this.logoutAndLiftUserState} />
