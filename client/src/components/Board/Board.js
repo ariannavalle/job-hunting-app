@@ -108,6 +108,7 @@ export default class Board extends Component {
     getJobsApplied = () => {
         const { columns } = this.props;
         let jobsInColumns = Object.values(columns)
+        if (jobsInColumns.length === 0) return 0;
         let totalJobs = jobsInColumns.reduce((accum, curr) => {
             return accum + curr.cards.length
         }, 0)
@@ -128,7 +129,7 @@ export default class Board extends Component {
     }
 
     render() {
-        const { currentUser, onUserChange, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, editCard, successMessage } = this.props;
+        const { currentUser, onUserChange, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, editCard, deleteColumn, successMessage } = this.props;
 
 
         return (
@@ -191,7 +192,9 @@ export default class Board extends Component {
                                     <Column
                                         column={column} index={index}
                                         toggleDetailsModal={this.toggleDetailsModal} 
-                                        setCurrentCard={this.setCurrentCard} />
+                                        setCurrentCard={this.setCurrentCard}
+                                        deleteColumn={deleteColumn}
+                                         />                                       
                                 </div>
                             );
                         })}

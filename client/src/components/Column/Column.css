@@ -8,6 +8,7 @@
 .column-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 8px;
     padding: .5rem 2rem .5rem 1rem;
     background-color: #4C7342;

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Card from '../Card/Card'
-import './Column.css'
 import { Droppable } from 'react-beautiful-dnd'
+import { FaRegTrashAlt } from "react-icons/fa";
+import './Column.css'
 
 export default class column extends Component {
 
@@ -22,14 +23,14 @@ export default class column extends Component {
 
     render() {
         const { _id, title, cards } = this.props.column;
-        const { index, toggleDetailsModal, setCurrentCard } = this.props;
+        const { index, toggleDetailsModal, setCurrentCard, deleteColumn } = this.props;
 
         return (
             <div className="column">
 
                 <div className={`column-header c-h-${index}`}>
-                    <div>{title}</div>
-                    <div>{cards.length}</div>
+                    <div>{title} ({cards.length})</div>
+                    <FaRegTrashAlt onClick={() => deleteColumn(_id)} />
                 </div>
 
                 <div>

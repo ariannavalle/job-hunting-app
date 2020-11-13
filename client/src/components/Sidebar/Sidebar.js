@@ -16,54 +16,54 @@ export default class Sidebar extends Component {
     render() {
         return (
             <div className="sidebar">
-                <div class="area"></div>
-                <nav class="main-menu">
+                <div className="area"></div>
+                <nav className="main-menu">
                     <ul>
                         <li onClick={this.props.toggleCreateModal}>
                             <span>
-                                <MdAddCircleOutline class="menu-icon menu-add" />
-                                <span class="nav-text">Add new job</span>
+                                <MdAddCircleOutline className="menu-icon menu-add" />
+                                <span className="nav-text">Add new job</span>
                             </span>
                         </li>
 
                         <li onClick={this.props.toggleColumnModal}>
                             <span>
-                                <FaListUl class="menu-icon" />
-                                <span class="nav-text">Add new list</span>
+                                <FaListUl className="menu-icon" />
+                                <span className="nav-text">Add new list</span>
                             </span>
                         </li>
 
                         <li>
                             <span>
-                                <GoGraph class="menu-icon" />
-                                <span class="nav-text">Graphs and Statistics</span>
+                                <GoGraph className="menu-icon" />
+                                <span className="nav-text">Graphs and Statistics</span>
                             </span>
                         </li>
 
                         <li>
                             <span>
-                                <FaMapMarkedAlt class="menu-icon" />
-                                <span class="nav-text">Maps</span>
+                                <FaMapMarkedAlt className="menu-icon" />
+                                <span className="nav-text">Maps</span>
                             </span>
                         </li>
                     </ul>
 
-                    <ul class="logout">
+                    <ul className="logout">
                         <li onClick={this.logoutAndLiftUserState}>
                             <span>
-                                <FaPowerOff class="menu-icon" />
-                                <span class="nav-text">Logout</span>
+                                <FaPowerOff className="menu-icon" />
+                                <span className="nav-text">Logout</span>
                             </span>
                         </li>
                     </ul>
 
                 </nav>
-                <nav class="mobile">
-                    <MdAddCircleOutline class="menu-icon menu-add" />
-                    <FaListUl class="menu-icon" />
-                    <GoGraph class="menu-icon" />
-                    <FaMapMarkedAlt class="menu-icon" />
-                    <FaPowerOff class="menu-icon" onClick={this.logoutAndLiftUserState} />
+                <nav className="mobile">
+                    <MdAddCircleOutline className="menu-icon menu-add" />
+                    <FaListUl className="menu-icon" />
+                    <GoGraph className="menu-icon" />
+                    <FaMapMarkedAlt className="menu-icon" />
+                    <FaPowerOff className="menu-icon" onClick={this.logoutAndLiftUserState} />
                 </nav>
             </div >
         )

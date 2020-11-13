@@ -11,6 +11,7 @@ import Login from './components/Authentication/Login/Login';
 import Board from './components/Board/Board'
 
 import ProtectedRoute from './components/ProtectedRoute';
+import column from './components/Column/Column';
 
 
 export default class App extends React.Component {
@@ -115,6 +116,18 @@ export default class App extends React.Component {
       });
   }
 
+  deleteColumn = (id) => {
+    COLUMN_SERVICE.deleteColumn(id)
+    .then((response)=>{
+      const { successMessage } = response.data;
+      const columns = Object.values(this.state.columns).filter(column => column._id !== id)
+      this.setState({
+        columns,
+        successMessage,
+      }); 
+    })
+  }
+
   render() {
     console.log('user: ', this.state.currentUser);
     console.log('cards: ', this.state.cards);
@@ -149,6 +162,7 @@ export default class App extends React.Component {
                       replaceColumns={this.replaceColumns}
                       deleteCard={this.deleteCard}
                       editCard={this.editCard}
+                      deleteColumn={this.deleteColumn}
                     />}
                 />)
               : <Route path='/' render={props => <div></div>} />
