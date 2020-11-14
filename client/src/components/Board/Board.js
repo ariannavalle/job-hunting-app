@@ -129,7 +129,7 @@ export default class Board extends Component {
     }
 
     render() {
-        const { currentUser, onUserChange, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, editCard, deleteColumn, successMessage } = this.props;
+        const { currentUser, onUserChange, columns, updateCardState, updateColumnState, replaceColumns, cards, deleteCard, editCard, editColumn, deleteColumn, successMessage } = this.props;
 
 
         return (
@@ -198,6 +198,7 @@ export default class Board extends Component {
                                         column={column} index={index}
                                         toggleDetailsModal={this.toggleDetailsModal} 
                                         setCurrentCard={this.setCurrentCard}
+                                        editColumn={editColumn}
                                         deleteColumn={deleteColumn}
                                         displayNotification={this.displayNotification}
                                          />                                       

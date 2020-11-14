@@ -18,7 +18,7 @@ router.post('/api/columns', (req, res, next) => {
 // Read - Get all
 // ****************************************************************************************
 
-router.get('/api/columns', (req, res) => {
+router.get('/api/columns', (req, res, next) => {
   Column.find()
     .populate('cards')
     .then(columnsFromDB => res.status(200).json({ columns: columnsFromDB }))
@@ -30,10 +30,10 @@ router.get('/api/columns', (req, res) => {
 // ****************************************************************************************
 
 // <form action="/columns/{{foundColumn._id}}/update" method="POST">
-router.post('/api/columns/:id/update', (req, res) => {
+router.post('/api/columns/:id/update', (req, res, next) => {
   Column.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .then(updatedColumn => res.status(200).json({ column: updatedColumn }))
-    .catch(err => next(err));
+    .then(updatedColumn => res.status(200).json({ column: updatedColumn, successMessage: 'Updated successfully!' }))
+    .catch(err => res.json({ failureMessage: 'Failed to update.' }));
 });
 
 // ****************************************************************************************
@@ -41,7 +41,7 @@ router.post('/api/columns/:id/update', (req, res) => {
 // ****************************************************************************************
 
 // <form action="/columns/{{this._id}}/delete" method="post">
-router.post('/api/columns/:columnId/delete', (req, res) => {
+router.post('/api/columns/:columnId/delete', (req, res,next) => {
   Column.findByIdAndRemove({_id: req.params.columnId})
   .then((doc) => Card.remove({_id: {$in: doc.cards}}))
   .then(() => res.json({ successMessage: 'Successfully deleted!' }))
@@ -52,7 +52,7 @@ router.post('/api/columns/:columnId/delete', (req, res) => {
 // Read - Get by id
 // ****************************************************************************************
 
-router.get('/api/columns/:someColumnId', (req, res) => {
+router.get('/api/columns/:someColumnId', (req, res, next) => {
   Column.findById(req.params.someColumnId)
     .populate('cards') //<= "cards" is the name of the property being referenced in Column.model.js
     .then(foundColumn => res.status(200).json({ column: foundColumn }))

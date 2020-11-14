@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Card = require('./Card.model')
 const { Schema, model } = mongoose;
 
 const columnSchema = new Schema(
@@ -14,4 +15,8 @@ const columnSchema = new Schema(
   }
 );
 
+// columnSchema.pre('remove', (next) => {
+//   Card.remove({_id: {$in: this.cards}}).exec();
+//   next()
+// });
 module.exports = model('Column', columnSchema);

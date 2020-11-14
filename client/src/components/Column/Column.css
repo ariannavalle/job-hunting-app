@@ -18,6 +18,17 @@
     background-color: #4C7342;
 }
 
+.h-icon{
+    margin-right: .8rem ;
+}
+
+.column-header > input {
+    width: 80%;
+    border-bottom: 1px solid white;
+    display: inline;
+    padding: 0 4px;
+}
+
 /* desktop */
 
 @media only screen and (min-width: 768px) {

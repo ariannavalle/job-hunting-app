@@ -110,6 +110,22 @@ export default class App extends React.Component {
       });
   }
 
+  editColumn = (id, data) => {
+    let updatedColumn = this.state.columns[id]
+    updatedColumn.title = data
+    COLUMN_SERVICE.updateColumn(id, updatedColumn)
+    .then((res)=>{
+      const { successMessage } = res.data;
+      COLUMN_SERVICE.getColumns()
+      .then((response) => {
+        this.setState({
+          columns: response.data.columns,
+          successMessage,
+        });
+      })
+    })
+  }
+
   deleteColumn = (id) => {
     COLUMN_SERVICE.deleteColumn(id)
     .then((response)=>{
@@ -156,6 +172,7 @@ export default class App extends React.Component {
                       replaceColumns={this.replaceColumns}
                       deleteCard={this.deleteCard}
                       editCard={this.editCard}
+                      editColumn={this.editColumn}
                       deleteColumn={this.deleteColumn}
                     />}
                 />)

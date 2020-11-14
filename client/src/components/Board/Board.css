@@ -8,12 +8,7 @@
 }
 
 .alert {
-    position: fixed;
-    top: 0px;
-    left: 0;
-    right: 0;
-    z-index: 7000;
-    margin-left: 3.7rem;
+    margin-left: 0;
 }
 
 /* desktop */
@@ -25,5 +20,13 @@
     .board-container {
         margin-left: 4vw;
         margin-bottom: 0;
+    }
+    .alert {
+        position: fixed;
+        top: 0px;
+        left: 0;
+        right: 0;
+        z-index: 7000;
+        margin-left: 3.7rem;
     }
 }
