@@ -33,7 +33,7 @@ router.get('/api/cards', (req, res, next) => {
 router.post('/api/cards/:id/update', (req, res, next) => {
   Card.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(updatedCard => res.status(200).json({ successMessage: 'Updated Successfully!', card: updatedCard }))
-    .catch(err => next(err));
+    .catch(err => res.json({ failureMessage: 'Failed to update card.' }));
 });
 
 // ****************************************************************************************
