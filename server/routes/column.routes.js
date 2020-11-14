@@ -42,7 +42,8 @@ router.post('/api/columns/:id/update', (req, res) => {
 
 // <form action="/columns/{{this._id}}/delete" method="post">
 router.post('/api/columns/:columnId/delete', (req, res) => {
-  Column.findByIdAndRemove(req.params.columnId)
+  Column.findByIdAndRemove({_id: req.params.columnId})
+  .then((doc) => Card.remove({_id: {$in: doc.cards}}))
   .then(() => res.json({ successMessage: 'Successfully deleted!' }))
   .catch(err => res.json({ failureMessage: 'Failed to delete card.' }))
 });
