@@ -44,7 +44,6 @@ export default class Signup extends React.Component {
             <div className="signin-content">
               <div className="signin-image">
                 <figure><img src="/images/signin-image.jpg" alt="illustration of a person sitting on a chair holding a laptop" /></figure>
-                <Link to='/signup' className="signup-image-link">Create an account</Link>
               </div>
 
               <div className="global-form">
@@ -74,6 +73,8 @@ export default class Signup extends React.Component {
 
                 {/* error message */}
                 {this.state.message && <div style={{ color: "red", paddingTop: "1rem"}}> {this.state.message} </div>}
+
+                <br/><Link to='/signup' className="signup-image-link">Create an account</Link>
 
 
                 {/* <div className="social-login">
