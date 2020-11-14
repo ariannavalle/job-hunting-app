@@ -10,8 +10,8 @@ const Card = require('../models/Card.model');
 router.post('/api/columns', (req, res, next) => {
   console.log(req.body);
   Column.create(req.body)
-    .then(columnDoc => res.status(200).json({ column: columnDoc }))
-    .catch(err => next(err));
+  .then(columnDoc => res.status(200).json({ column: columnDoc, successMessage: 'List successfully added!' }))
+  .catch(err => res.json({ failureMessage: 'Failed to create list.' }));
 });
 
 // ****************************************************************************************

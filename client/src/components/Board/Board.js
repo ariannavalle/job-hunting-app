@@ -166,6 +166,9 @@ export default class Board extends Component {
                     replaceColumns={replaceColumns}
                     displayCreateModal={this.state.displayCreateModal}
                     toggleCreateModal={this.toggleCreateModal}
+                    successMessage={successMessage}
+                    displayNotification={this.displayNotification}
+                    
                 />
 
                 <CardDetails
@@ -182,6 +185,8 @@ export default class Board extends Component {
                     updateColumnState={updateColumnState}
                     displayColumnModal={this.state.displayColumnModal}
                     toggleColumnModal={this.toggleColumnModal}
+                    successMessage={successMessage}
+                    displayNotification={this.displayNotification}
                 />
 
                 <DragDropContext onDragEnd={this.onDragEnd}>
@@ -194,6 +199,7 @@ export default class Board extends Component {
                                         toggleDetailsModal={this.toggleDetailsModal} 
                                         setCurrentCard={this.setCurrentCard}
                                         deleteColumn={deleteColumn}
+                                        displayNotification={this.displayNotification}
                                          />                                       
                                 </div>
                             );

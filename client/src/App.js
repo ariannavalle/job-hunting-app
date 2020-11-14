@@ -1,18 +1,12 @@
 import React from 'react';
-
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
 import AUTH_SERVICE from './services/AuthService';
 import CARD_SERVICE from './services/CardService'
 import COLUMN_SERVICE from './services/ColumnService'
-
 import Signup from './components/Authentication/Signup/Signup';
 import Login from './components/Authentication/Login/Login';
 import Board from './components/Board/Board'
-
 import ProtectedRoute from './components/ProtectedRoute';
-import column from './components/Column/Column';
-
 
 export default class App extends React.Component {
   state = {
@@ -52,14 +46,14 @@ export default class App extends React.Component {
     this.setState({ currentUser: user });
   };
 
-  updateCardState = cards => {
+  updateCardState = (cards,successMessage) => {
     const updateCard = { ...this.state.cards, [cards._id]: cards };
-    this.setState({ cards: updateCard });
+    this.setState({ cards: updateCard, successMessage});
   };
 
-  updateColumnState = columns => {
+  updateColumnState = (columns,successMessage) => {
     const updateColumn = { ...this.state.columns, [columns._id]: columns };
-    this.setState({ columns: updateColumn });
+    this.setState({ columns: updateColumn, successMessage });
   };
 
   replaceColumns = async (column1, column2) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import CARD_SERVICE from "../../../services/CardService"
-import { MdAdd, MdWork, MdLocationOn, MdWeb } from "react-icons/md";
+import { MdWork, MdLocationOn, MdWeb } from "react-icons/md";
 import { BsBuilding, BsCalendar } from "react-icons/bs";
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import './CreateCard.css'
@@ -14,7 +14,6 @@ export default class CreateCard extends React.Component {
         note: '',
         location: '',
         postingURL: '',
-        message: null,
         modalIsOpen: false,
     }
 
@@ -30,20 +29,16 @@ export default class CreateCard extends React.Component {
         // create card in db
         CARD_SERVICE.createCard({ title, company, date, note, location, postingURL })
             .then((serverResponse) => {
-                const { card } = serverResponse.data;
-
+                const { card, successMessage } = serverResponse.data;
+                
                 // set the state
-                this.props.updateCardState(card);
+                this.props.updateCardState(card, successMessage );
 
                 // insert newly created card in first column
                 const { columns } = this.props;
                 columns[Object.keys(columns)[0]].cards.push(card)
 
                 // update column in db and state
-
-                // this is creating a dupe
-                // this.props.updateColumnState(columns[Object.keys(columns)[0]])
-
                 this.props.replaceColumns(columns[Object.keys(columns)[0]], columns[Object.keys(columns)[0]])
 
                 this.props.toggleCreateModal()
@@ -58,12 +53,8 @@ export default class CreateCard extends React.Component {
                     postingURL: '',
                 })
 
+                this.props.displayNotification()
             })
-            .catch(err => {
-                if (err.response && err.response.data) {
-                    return this.setState({ message: err.response.data.message });
-                }
-            });
     }
 
     render() {

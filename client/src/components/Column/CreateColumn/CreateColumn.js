@@ -21,15 +21,17 @@ export default class CreateColumn extends React.Component {
 
         COLUMN_SERVICE.createColumn({ title })
             .then((serverResponse) => {
-                const { column } = serverResponse.data;
+                const { column, successMessage } = serverResponse.data;
 
-                this.props.updateColumnState(column);
+                this.props.updateColumnState(column, successMessage);
                 this.props.toggleColumnModal()
 
                 // clear form after submission
                 this.setState({
                     title: '',
                 })
+
+                this.props.displayNotification()
 
             })
             .catch(err => {

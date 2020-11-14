@@ -11,8 +11,8 @@ const Card = require('../models/Card.model');
 router.post('/api/cards', (req, res, next) => {
   // console.log(req.body);
   Card.create(req.body)
-    .then(cardDoc => res.status(200).json({ card: cardDoc }))
-    .catch(err => next(err));
+    .then(cardDoc => res.status(200).json({ card: cardDoc, successMessage: 'Successfully created!' }))
+    .catch(err => res.json({ failureMessage: 'Failed to create card.' }));
 });
 
 // ****************************************************************************************
