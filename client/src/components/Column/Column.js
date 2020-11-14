@@ -6,31 +6,16 @@ import './Column.css'
 
 export default class column extends Component {
 
-    getBackgroundColor = (snapshot) => {
-        // The destination column turns blue when a card is being dragged
-        if (snapshot.isDraggingOver) {
-            return '#deebff';
-        }
-
-        // The home column turns yellow when a card is being dragged
-        if (snapshot.draggingFromThisWith) {
-            return '#fffbde';
-        }
-
-        // Otherwise use our default background
-        return 'inherit';
-    };
-
     render() {
         const { _id, title, cards } = this.props.column;
-        const { index, toggleDetailsModal, setCurrentCard, deleteColumn } = this.props;
+        const { index, toggleDetailsModal, setCurrentCard, deleteColumn, displayNotification } = this.props;
 
         return (
             <div className="column">
 
                 <div className={`column-header c-h-${index}`}>
                     <div>{title} ({cards.length})</div>
-                    <FaRegTrashAlt onClick={() => deleteColumn(_id)} />
+                    <FaRegTrashAlt onClick={() => { deleteColumn(_id); displayNotification() }} />
                 </div>
 
                 <div>
@@ -38,13 +23,12 @@ export default class column extends Component {
                         {(provided, snapshot) => (
                             <div className="droppable-height"
                                 ref={provided.innerRef}
-                                // style={{ backgroundColor: snapshot.isDraggingOver ? '#deebff' : 'inherit', minHeight:"100vh" }}
-                                style={{ backgroundColor: this.getBackgroundColor(snapshot) }}
+                                style={{ backgroundColor: snapshot.isDraggingOver ? '#E3EEE1' : 'inherit' }}
                                 {...provided.droppableProps}
                             >
                                 {cards.map((card, index) => {
                                     return (
-                                        <div key={card._id} onClick={() => {toggleDetailsModal();setCurrentCard(card)}}>
+                                        <div key={card._id} onClick={() => { toggleDetailsModal(); setCurrentCard(card) }}>
                                             <Card card={card} index={index} column={_id} />
                                         </div>
                                     )
@@ -55,9 +39,6 @@ export default class column extends Component {
                         )}
                     </Droppable>
                 </div>
-
-
-
             </div>
         )
     }

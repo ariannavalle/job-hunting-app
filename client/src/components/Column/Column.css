@@ -15,25 +15,6 @@
     font-weight: bold;
     border-radius: 4px;
     color: white;
-}
-
-.c-h-0 {
-    background-color: #4C7342;
-}
-
-.c-h-1 {
-    background-color: #4C7342;
-}
-
-.c-h-2 {
-    background-color: #4C7342;
-}
-
-.c-h-3 {
-    background-color: #616161;
-}
-
-.c-h-4 {
     background-color: #4C7342;
 }
 
@@ -42,8 +23,10 @@
 @media only screen and (min-width: 768px) {
     .column {
         width: 323px;
+        height: 100%;
     }
-    .column .droppable-height {
+    .droppable-height {
         min-height: 100vh;
+        border-radius: 10px;
     }
 }

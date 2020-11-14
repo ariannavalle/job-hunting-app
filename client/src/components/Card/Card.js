@@ -13,7 +13,8 @@ export default class card extends Component {
             <Draggable draggableId={_id} index={index}>
                 {(provided, snapshot) => {
                     const style = {
-                        backgroundColor: snapshot.isDragging ? '#bad2f7' : 'white',
+                        backgroundColor: snapshot.isDragging ? '#E3EEE1' : 'white',
+                        border: snapshot.isDragging ? '2px solid #fff' : 'none',
                         fontSize: 18,
                         ...provided.draggableProps.style,
                     };
@@ -27,9 +28,6 @@ export default class card extends Component {
                         <div className="card-tile-header">{title}</div>
                         <div className="card-tile-subheader"><BsBuilding /> {company}</div>
                         <div className="card-tile-subheader">{location ? (<MdLocationOn style={{ color: "#f40810" }} />) : null} {location}</div>
-                        {/*<div>Date Applied: {date}</div>
-                        <div>Notes: {note}</div> */}
-
                     </div>)
                 }}
             </Draggable>
