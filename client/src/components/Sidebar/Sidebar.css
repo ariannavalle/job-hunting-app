@@ -42,7 +42,7 @@
     width: 250px;
 }
 
-.main-menu li>span {
+.main-menu li>span, li>a{
     position: relative;
     display: table;
     border-collapse: collapse;
@@ -122,7 +122,7 @@ nav ul, nav li {
     }
     .mobile {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
         background: #212121;
         position: fixed;

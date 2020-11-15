@@ -1,0 +1,29 @@
+.charting-container{
+    background-color: #f8f8f8;
+    font-family: Poppins;
+    height: 100%;
+}
+
+.chart-row {
+    height: 50vh;
+    width: 100%;
+}
+.chart {
+    width: 100%;
+}
+
+/* desktop */
+@media only screen and (min-width: 768px) {
+
+    .charts {
+        display: flex;
+        flex-direction: column;
+    }
+    .chart-row {
+        display: flex;
+        height: 50vh;
+    }
+    .chart {
+        width: 50%;
+    }
+}

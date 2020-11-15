@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import AUTH_SERVICE from '../../services/AuthService';
 import { MdAddCircleOutline } from "react-icons/md";
 import { FaListUl, FaMapMarkedAlt, FaPowerOff } from "react-icons/fa";
@@ -36,16 +37,10 @@ export default class Sidebar extends Component {
                         <li>
                             <span>
                                 <GoGraph className="menu-icon" />
-                                <span className="nav-text">Graphs and Statistics</span>
+                                <span className="nav-text"><Link to="/charting">Graphs and Statistics</Link></span>
                             </span>
                         </li>
 
-                        <li>
-                            <span>
-                                <FaMapMarkedAlt className="menu-icon" />
-                                <span className="nav-text">Maps</span>
-                            </span>
-                        </li>
                     </ul>
 
                     <ul className="logout">
@@ -61,8 +56,7 @@ export default class Sidebar extends Component {
                 <nav className="mobile">
                     <MdAddCircleOutline className="menu-icon menu-add" onClick={this.props.toggleCreateModal} />
                     <FaListUl className="menu-icon" onClick={this.props.toggleColumnModal} />
-                    <GoGraph className="menu-icon" />
-                    <FaMapMarkedAlt className="menu-icon" />
+                    <Link to="/charting"><GoGraph className="menu-icon"  /></Link>
                     <FaPowerOff className="menu-icon" onClick={this.logoutAndLiftUserState} />
                 </nav>
             </div >
