@@ -29,16 +29,16 @@ export default class Chart extends Component {
                         "y": 5
                     }
                 ]
-            }   
+            }
         ]
 
         return (
             <ResponsiveLine
                 data={data}
-                margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+                margin={{ top: 50, right: 50, bottom: 100, left: 50 }}
                 xScale={{ type: 'point' }}
                 yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
-                yFormat=" >-.2f"
+                yFormat=" >-.2~f"
                 curve="natural"
                 axisTop={null}
                 axisRight={null}
@@ -47,23 +47,23 @@ export default class Chart extends Component {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'Application Status',
+                    legend: 'transportation',
                     legendOffset: 36,
                     legendPosition: 'middle'
                 }}
                 axisLeft={{
                     orient: 'left',
                     tickSize: 5,
-                    tickPadding: 5,
+                    tickPadding: 6,
                     tickRotation: 0,
-                    legend: 'Number of Applications',
+                    legend: 'count',
                     legendOffset: -40,
                     legendPosition: 'middle'
                 }}
                 enableGridX={false}
                 enableGridY={false}
-                colors={"#92BC7F"}
-                lineWidth={6}
+                colors={{ scheme: 'category10' }}
+                lineWidth={4}
                 pointSize={10}
                 pointColor={{ from: 'color', modifiers: [] }}
                 pointBorderWidth={2}

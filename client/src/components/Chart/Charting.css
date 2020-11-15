@@ -1,5 +1,4 @@
 .charting-container{
-    background-color: #f8f8f8;
     font-family: Poppins;
     height: 100%;
 }
@@ -10,6 +9,10 @@
 }
 .chart {
     width: 100%;
+    background-color: #f4f5f7;
+    margin:1rem;
+    text-align: center;
+    font-weight: bold;
 }
 
 /* desktop */
