@@ -62,7 +62,7 @@ export default class Chart extends Component {
                 }}
                 enableGridX={false}
                 enableGridY={false}
-                colors={"#9970ab"}
+                colors={"#92BC7F"}
                 lineWidth={6}
                 pointSize={10}
                 pointColor={{ from: 'color', modifiers: [] }}
