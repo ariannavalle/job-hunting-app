@@ -15,7 +15,7 @@ export default class Charting extends Component {
                             <Line /></div>
                         <div className="chart">
                             <h3><b>Number of Jobs Per Category</b></h3>
-                            <Pie /></div>
+                            <Pie columns={this.props.columns} /></div>
                     </div>
                     <div className="chart-row">
                         <div className="chart">

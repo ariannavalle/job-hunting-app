@@ -3,38 +3,24 @@ import { ResponsivePie } from '@nivo/pie'
 
 export default class Pie extends Component {
     render() {
-        const data = [
-            {
-                "id": "elixir",
-                "label": "elixir",
-                "value": 282,
-                "color": "hsl(40, 70%, 50%)"
-            },
-            {
-                "id": "c",
-                "label": "c",
-                "value": 216,
-                "color": "hsl(40, 70%, 50%)"
-            },
-            {
-                "id": "make",
-                "label": "make",
-                "value": 255,
-                "color": "hsl(18, 70%, 50%)"
-            },
-            {
-                "id": "go",
-                "label": "go",
-                "value": 312,
-                "color": "hsl(159, 70%, 50%)"
-            },
-            {
-                "id": "lisp",
-                "label": "lisp",
-                "value": 352,
-                "color": "hsl(196, 70%, 50%)"
+        const data = Object.values(this.props.columns).map((column) => {
+            return {
+                "id": column.title,
+                "label": column.title,
+                "value": column.cards.length,
             }
-        ]
+        })
+
+        const styles = ["lines", "dots", "", ""]
+        const sliceStyle = Object.values(data).map(data => {
+            return {
+                match: {
+                    id: data.id
+                },
+                id: styles[Math.floor(Math.random() * Math.floor(styles.length))],
+            }
+        })
+        
         return (
             <ResponsivePie
                 data={data}
@@ -70,70 +56,8 @@ export default class Pie extends Component {
                         spacing: 10
                     }
                 ]}
-                fill={[
-                    {
-                        match: {
-                            id: 'ruby'
-                        },
-                        id: 'dots'
-                    },
-                    {
-                        match: {
-                            id: 'c'
-                        },
-                        id: 'dots'
-                    },
-                    {
-                        match: {
-                            id: 'go'
-                        },
-                        id: 'dots'
-                    },
-                    {
-                        match: {
-                            id: 'python'
-                        },
-                        id: 'dots'
-                    },
-                    {
-                        match: {
-                            id: 'scala'
-                        },
-                        id: 'lines'
-                    },
-                    {
-                        match: {
-                            id: 'lisp'
-                        },
-                        id: 'lines'
-                    },
-                    {
-                        match: {
-                            id: 'elixir'
-                        },
-                        id: 'lines'
-                    },
-                    {
-                        match: {
-                            id: 'javascript'
-                        },
-                        id: 'lines'
-                    }
-                ]}
-                legends={[
-                    {
-                        anchor: 'right',
-                        direction: 'column',
-                        justify: false,
-                        translateX: 64,
-                        translateY: -82,
-                        itemWidth: 110,
-                        itemHeight: 20,
-                        itemsSpacing: 0,
-                        symbolSize: 18,
-                        itemDirection: 'left-to-right'
-                    }
-                ]}
+                fill={sliceStyle}
+                legends={[]}
             />
         )
     }

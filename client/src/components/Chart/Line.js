@@ -5,8 +5,8 @@ export default class Chart extends Component {
     render() {
         const data = [
             {
-                "id": "jobsPerCategory",
-                "color": "hsl(334, 70%, 50%)",
+                // "id": "jobsPerCategory",
+                // "color": "hsl(334, 70%, 50%)",
                 "data": [
                     {
                         "x": "Applied",
