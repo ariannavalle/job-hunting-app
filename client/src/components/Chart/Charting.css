@@ -1,4 +1,4 @@
-.charting-container{
+.charting-container {
     font-family: Poppins;
     height: 100%;
 }
@@ -6,17 +6,31 @@
 .chart-row {
     width: 100%;
 }
+
 .chart {
     width: 100%;
     background-color: #f4f5f7;
-    margin:1rem;
+    margin: 1rem;
     text-align: center;
-    overflow: hidden;
+    overflow: scroll;
+}
+
+.chart>h3 {
+    padding-top: 1rem;
+}
+
+.jobs-table {
+    text-align: left;
+    margin: 1rem 4rem;
+}
+
+.jobs-table b {
+    color: #2077b4;
 }
 
 /* desktop */
-@media only screen and (min-width: 768px) {
 
+@media only screen and (min-width: 768px) {
     .charts {
         display: flex;
         flex-direction: column;

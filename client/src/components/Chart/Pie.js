@@ -3,16 +3,11 @@ import { ResponsivePie } from '@nivo/pie'
 
 export default class Pie extends Component {
     render() {
-        const data = Object.values(this.props.columns).map((column) => {
-            return {
-                "id": column.title,
-                "label": column.title,
-                "value": column.cards.length,
-            }
-        })
+
+        const { pieData } = this.props
 
         const styles = ["lines", "dots", "", ""]
-        const sliceStyle = Object.values(data).map(data => {
+        const sliceStyle = Object.values(pieData).map(data => {
             return {
                 match: {
                     id: data.id
@@ -20,11 +15,11 @@ export default class Pie extends Component {
                 id: styles[Math.floor(Math.random() * Math.floor(styles.length))],
             }
         })
-        
+
         return (
             <ResponsivePie
-                data={data}
-                margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                data={pieData}
+                margin={{ top: 10, right: 80, bottom: 80, left: 80 }}
                 innerRadius={0.5}
                 padAngle={0.7}
                 cornerRadius={3}
