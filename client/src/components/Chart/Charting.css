@@ -11,6 +11,7 @@
     background-color: #f4f5f7;
     margin:1rem;
     text-align: center;
+    overflow: hidden;
 }
 
 /* desktop */

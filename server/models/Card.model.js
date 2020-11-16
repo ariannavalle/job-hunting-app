@@ -12,7 +12,6 @@ const cardSchema = new Schema(
     },
     date: {
       type: Date,
-      required: [true, 'Date applied is required.'],
     },
     note: {
       type: String,

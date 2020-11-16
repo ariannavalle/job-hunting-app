@@ -11,8 +11,8 @@ export default class Charting extends Component {
                 <div className="charts">
                     <div className="chart-row">
                         <div className="chart">
-                            <h3><b>Jobs Applied - Last 7 Days</b></h3>
-                            <Line /></div>
+                            <h3><b>Recently Jobs Applied By Date</b></h3>
+                            <Line columns={this.props.columns}  /></div>
                         <div className="chart">
                             <h3><b>Number of Jobs Per Category</b></h3>
                             <Pie columns={this.props.columns} /></div>
@@ -20,10 +20,10 @@ export default class Charting extends Component {
                     <div className="chart-row">
                         <div className="chart">
                             <h3><b>Jobs Applied - Last 7 Days</b></h3>
-                            <Line /></div>
+                            <Line columns={this.props.columns}  /></div>
                         <div className="chart">
                             <h3><b>Jobs Applied - Last 7 Days</b></h3>
-                            <Line /></div>
+                            <Line columns={this.props.columns}  /></div>
                     </div>
                 </div>
             </div>

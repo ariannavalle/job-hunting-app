@@ -1,41 +1,35 @@
 import React, { Component } from 'react'
 import { ResponsiveLine } from '@nivo/line'
+import column from '../Column/Column';
 
 export default class Chart extends Component {
     render() {
-        const data = [
-            {
-                // "id": "jobsPerCategory",
-                // "color": "hsl(334, 70%, 50%)",
-                "data": [
-                    {
-                        "x": "Applied",
-                        "y": 0
-                    },
-                    {
-                        "x": "Interviwing",
-                        "y": 3
-                    },
-                    {
-                        "x": "Hired",
-                        "y": 6
-                    },
-                    {
-                        "x": "Rejected",
-                        "y": 1
-                    },
-                    {
-                        "x": "Ghosted",
-                        "y": 5
-                    }
-                ]
-            }
-        ]
+        console.log(Object.values(this.props.columns))
+        const test = Object.values(this.props.columns).filter(column => column.title === "Applied" || column.title === "applied")[0].cards
+
+        // const test = Object.values(this.props.columns).map(column => column.cards)
+        
+        const test2= test.reduce(function(acc,curr){
+            acc[curr.date] = (acc[curr.date] || 0) + 1;
+            return acc
+         },{});
+
+         const test3 = Object.entries(test2).map(entry => {
+             return {
+                 x: entry[0].slice(0,10).toString(),
+                 y: entry[1].toString()
+             }
+         })
+         
+        console.log('1',test)
+        console.log('2',test2)
+        console.log([{"data": test3}])
+        
 
         return (
             <ResponsiveLine
-                data={data}
-                margin={{ top: 50, right: 50, bottom: 100, left: 50 }}
+                data={[{"data": test3}]}
+                margin={{ top: 15, right: 50, bottom: 120, left: 50 }}
                 xScale={{ type: 'point' }}
                 yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
                 yFormat=" >-.2~f"
@@ -45,10 +39,10 @@ export default class Chart extends Component {
                 axisBottom={{
                     orient: 'bottom',
                     tickSize: 5,
-                    tickPadding: 5,
+                    tickPadding: 10,
                     tickRotation: 0,
-                    legend: 'transportation',
-                    legendOffset: 36,
+                    legend: 'Date',
+                    legendOffset: 56,
                     legendPosition: 'middle'
                 }}
                 axisLeft={{
@@ -56,7 +50,7 @@ export default class Chart extends Component {
                     tickSize: 5,
                     tickPadding: 6,
                     tickRotation: 0,
-                    legend: 'count',
+                    legend: 'Number of Jobs',
                     legendOffset: -40,
                     legendPosition: 'middle'
                 }}

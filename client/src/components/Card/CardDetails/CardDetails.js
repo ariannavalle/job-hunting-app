@@ -29,7 +29,7 @@ export default class CardDetails extends React.Component {
                             <div className="details">{location}</div>
 
                             <div className="details-header"><BsCalendar className="details-icon" /> Date Applied</div>
-                            <div className="details">{date.slice(0,10)}</div>
+                            <div className="details">{date? date.slice(0,10): date}</div>
 
                             <div className="details-header"><MdWeb className="details-icon" /> URL to Job Posting</div>
                             <div className="details">{postingURL}</div>
@@ -79,7 +79,7 @@ export default class CardDetails extends React.Component {
                                     <BsCalendar className="details-icon" /> Date Applied
                             </div>
                                 <div className="edit-input">
-                                    <input type="date" name="date" id="date" placeholder={date.slice(0,10)} value={date.slice(0,10)} onChange={this.props.handleChange} />
+                                    <input type="date" name="date" id="date" value={date? date.slice(0,10): date} onChange={this.props.handleChange} />
                                 </div>
 
                                 <div className="details-header">

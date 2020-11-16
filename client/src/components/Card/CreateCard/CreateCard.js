@@ -83,8 +83,8 @@ export default class CreateCard extends React.Component {
 
                                 <div className="form-group" style={{ display: "flex", justifyContent: "space-between", borderBottom:"1px solid #999" }}>
                                     <div className="icon" style={{display:"flex", }}><BsCalendar style={{marginBottom:"0"}}/>
-                                        <div style={{padding: "0 15px",color:"#999"}}>Date Applied *  </div></div>
-                                    <input style={{ border:"0", padding: "0", width: "40%" }} type="date" name="date" id="date" required value={date}
+                                        <div style={{padding: "0 15px",color:"#999"}}>Date Applied  </div></div>
+                                    <input style={{ border:"0", padding: "0", width: "40%" }} type="date" name="date" id="date" value={date}
                                         onChange={this.handleChange} />
                                 </div>
 
