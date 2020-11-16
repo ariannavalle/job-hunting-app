@@ -30,9 +30,9 @@ export default class CreateCard extends React.Component {
         CARD_SERVICE.createCard({ title, company, date, note, location, postingURL })
             .then((serverResponse) => {
                 const { card, successMessage } = serverResponse.data;
-                
+
                 // set the state
-                this.props.updateCardState(card, successMessage );
+                this.props.updateCardState(card, successMessage);
 
                 // insert newly created card in first column
                 const { columns } = this.props;
@@ -81,17 +81,19 @@ export default class CreateCard extends React.Component {
                                         onChange={this.handleChange} />
                                 </div>
 
+                                <div className="form-group" style={{ display: "flex", justifyContent: "space-between", borderBottom:"1px solid #999" }}>
+                                    <div className="icon" style={{display:"flex", }}><BsCalendar style={{marginBottom:"0"}}/>
+                                        <div style={{padding: "0 15px",color:"#999"}}>Date Applied *  </div></div>
+                                    <input style={{ border:"0", padding: "0", width: "40%" }} type="date" name="date" id="date" required value={date}
+                                        onChange={this.handleChange} />
+                                </div>
+
                                 <div className="form-group">
                                     <label htmlFor="location" className="icon"><MdLocationOn /></label>
                                     <input type="text" name="location" id="location" placeholder="Location" value={location}
                                         onChange={this.handleChange} />
                                 </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="date" className="icon"><BsCalendar /></label>
-                                    <input type="text" name="date" id="date" placeholder="Date Applied" value={date}
-                                        onChange={this.handleChange} />
-                                </div>
 
                                 <div className="form-group">
                                     <label htmlFor="postingURL" className="icon"><MdWeb /></label>
