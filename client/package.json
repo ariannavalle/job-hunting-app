@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@nivo/calendar": "^0.64.0",
     "@nivo/line": "^0.64.0",
     "@nivo/pie": "^0.64.0",
     "@testing-library/jest-dom": "^5.11.4",
