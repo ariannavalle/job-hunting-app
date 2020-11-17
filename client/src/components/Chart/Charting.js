@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Line from './Line'
 import Pie from './Pie'
 import Calendar from './Calendar'
+import { Link } from 'react-router-dom'
 import './Charting.css'
 
 export default class Charting extends Component {
@@ -47,6 +48,7 @@ export default class Charting extends Component {
         return (
             <div className="charting-container">
                 <center><h2>Graphs and Stats</h2></center>
+                <Link to='/' className="btn-primary" style={{marginLeft:"1rem", padding:".6rem 1.8rem"}}>Back</Link>
                 <div className="charts">
                     <div className="chart-row">
                         <div className="chart">
