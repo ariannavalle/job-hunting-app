@@ -72,7 +72,7 @@ export default class Charting extends Component {
                                 }).map((card, i) => {
                                     {
                                         return (
-                                            <div><b>{i < 9 ? `0${i + 1}` : i + 1}. {card.title}</b> - {card.company}</div>
+                                            <div key={i}><b>{i < 9 ? `0${i + 1}` : i + 1}. <span>{card.title}</span> - {card.company}</b> </div>
                                         )
                                     }
                                 })}
