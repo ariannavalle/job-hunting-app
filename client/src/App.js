@@ -175,6 +175,7 @@ export default class App extends React.Component {
                       editCard={this.editCard}
                       editColumn={this.editColumn}
                       deleteColumn={this.deleteColumn}
+                      fetchData={this.fetchData}
                     />}
                 />)
               : <Route path='/' render={props => <div></div>} />

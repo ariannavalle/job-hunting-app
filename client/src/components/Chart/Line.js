@@ -21,7 +21,7 @@ export default class Chart extends Component {
                     tickSize: 5,
                     tickPadding: 10,
                     tickRotation: 0,
-                    legend: 'Date',
+                    legend: 'Location',
                     legendOffset: 56,
                     legendPosition: 'middle'
                 }}

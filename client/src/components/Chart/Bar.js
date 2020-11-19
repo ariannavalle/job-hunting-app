@@ -55,7 +55,7 @@ export default class Bar extends Component {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'salary',
+                    legend: 'Salary',
                     legendPosition: 'middle',
                     legendOffset: 50
                 }}

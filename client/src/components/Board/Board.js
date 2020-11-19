@@ -18,9 +18,9 @@ export default class Board extends Component {
         displayNotification: false,
     };
 
-    // componentDidMount = () => {
-    //     this.props.fetchData()
-    // }
+    componentDidMount = () => {
+        this.props.fetchData()
+    }
 
     setCurrentCard = (card) => {
         this.setState({
@@ -110,14 +110,9 @@ export default class Board extends Component {
     };
 
     getJobsApplied = () => {
-        const { columns } = this.props;
-        let jobsInColumns = columns && Object.values(columns)
-        if (jobsInColumns.length === 0) return 0;
-        let totalJobs = jobsInColumns.reduce((accum, curr) => {
-            return accum + curr.cards.length
-        }, 0)
-        let interestedJobs = columns[Object.keys(columns)[0]]?.cards?.length
-        return totalJobs - interestedJobs;
+        const { cards } = this.props;
+        const jobsApplied = Object.values(cards).filter((card) => card.date)
+        return jobsApplied.length
     }
 
     getMsg = () => {
