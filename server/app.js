@@ -43,9 +43,9 @@ app.use('/', require('./routes/column.routes'));
 
 
 // catch missing routes and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404));
-});
+// app.use((req, res, next) => {
+//   next(createError(404));
+// });
 
 // catch all error handler
 app.use((error, req, res, next) => {
