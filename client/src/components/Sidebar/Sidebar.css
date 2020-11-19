@@ -42,7 +42,7 @@
     width: 250px;
 }
 
-.main-menu li>span, li>a{
+.main-menu li>span, li>a {
     position: relative;
     display: table;
     border-collapse: collapse;
@@ -63,6 +63,15 @@
     width: 190px;
     font-size: 1.2rem;
     font-family: 'Poppins';
+}
+
+.nav-text>a {
+    color: #999;
+}
+
+.nav-text>a:hover {
+    color: white;
+    text-decoration: none;
 }
 
 .main-menu>ul.logout {
