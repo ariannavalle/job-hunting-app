@@ -18,6 +18,10 @@ export default class Board extends Component {
         displayNotification: false,
     };
 
+    // componentDidMount = () => {
+    //     this.props.fetchData()
+    // }
+
     setCurrentCard = (card) => {
         this.setState({
             selectedCard: card,
@@ -107,7 +111,7 @@ export default class Board extends Component {
 
     getJobsApplied = () => {
         const { columns } = this.props;
-        let jobsInColumns = Object.values(columns)
+        let jobsInColumns = columns && Object.values(columns)
         if (jobsInColumns.length === 0) return 0;
         let totalJobs = jobsInColumns.reduce((accum, curr) => {
             return accum + curr.cards.length
@@ -191,7 +195,8 @@ export default class Board extends Component {
 
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <div className="board">
-                        {Object.values(columns).map((column, index) => {
+
+                        {columns && Object.values(columns).map((column, index) => {
                             return (
                                 <div key={column._id}>
                                     <Column

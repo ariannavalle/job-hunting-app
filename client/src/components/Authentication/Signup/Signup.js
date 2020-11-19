@@ -26,9 +26,9 @@ export default class Signup extends React.Component {
 
     AUTH_SERVICE.signup({ name, email, password })
       .then(responseFromServer => {
-        const { user } = responseFromServer.data;
+        const { user, columns } = responseFromServer.data;
 
-        this.props.onUserChange(user);
+        this.props.onUserChange(user, columns);
         this.props.history.push('/');
       })
       .catch(err => {

@@ -2,9 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
-
 const User = require('../models/User.model');
-
+const Column = require('../models/Column.model');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
@@ -38,14 +37,45 @@ router.post('/api/signup', (req, res, next) => {
         name,
         email,
         passwordHash: hashedPassword
-      });
+      })
     })
-    .then(user => {
-      req.login(user, err => {
-        if (err) return res.status(500).json({ message: 'Login failed.' });
-        user.passwordHash = undefined;
-        res.status(200).json({ message: 'Login successful.', user });
-      });
+    .then((user) => {
+      const columns = [
+        {
+          "title": "Interested",
+          "cards": [],
+          "creator": user._id
+        },
+        {
+          "title": "Applied",
+          "cards": [],
+          "creator": user._id
+        },
+        {
+          "title": "Interviewing",
+          "cards": [],
+          "creator": user._id
+        },
+        {
+          "title": "Rejected",
+          "cards": [],
+          "creator": user._id
+        },
+        {
+          "title": "Hired",
+          "cards": [],
+          "creator": user._id
+        }
+      ]
+      Column.create(columns)
+        .then((createdColumn) => {
+          console.log({ createdColumn })
+          req.login(user, err => {
+            if (err) return res.status(500).json({ message: 'Login failed.' });
+            user.passwordHash = undefined;
+            res.status(200).json({ message: 'Login successful.', user, columns: createdColumn });
+          })
+        }).catch(err => res.json({ message: err.message }))
     })
     .catch(err => {
       if (err instanceof mongoose.Error.ValidationError) {

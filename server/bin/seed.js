@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const User = require('../models/User.model');
 const Card = require('../models/Card.model');
 const Column = require('../models/Column.model');
+const ObjectId = require('mongodb').ObjectID;
 
-const users = [
+const user = 
   {
     name: "Arianna",
     email: "arianna@gmail.com",
     passwordHash: "$2a$10$sBeyeGbwT4SdyLMKfxFBrOZgIgK8y0v3Xb6bOuwhzhZ.Rece/R9Zi"
-  },
-];
+  }
 
 const cards = [
   { "title": "Software Engineer", "company": "JPMorgan Chase & Co.", "date": "2020-11-15", "postingURL" : "https://www.linkedin.com/jobs/view/2241540235", "note": `This role requires a wide variety of strengths and capabilities, including:
@@ -65,37 +65,42 @@ Column.collection.drop();
 
 // seed the database with users and cards
 User
-  .create(users)
-  .then(newUsers => {
+  .create(user)
+  .then(newUser => {
     Card
       .create(cards)
       .then(cardsFromDB => {
-
+console.log(cardsFromDB[0]._id, newUser._id)
         const columns = [
           { "title":"Interested",
+            "creator": ObjectId(newUser._id),
             "cards": 
             [ cardsFromDB[0]._id, cardsFromDB[1]._id, cardsFromDB[2]._id, cardsFromDB[3]._id]
           },
           { "title":"Applied",
+          "creator": ObjectId(newUser._id),
           "cards": 
           [ cardsFromDB[4]._id, cardsFromDB[5]._id, cardsFromDB[6]._id]
           },
           { "title":"Interviewing",
+          "creator": ObjectId(newUser._id),
             "cards": 
             [ cardsFromDB[7]._id]
           },
           { "title":"Rejected",
+          "creator": ObjectId(newUser._id),
           "cards": 
           [ cardsFromDB[8]._id, cardsFromDB[9]._id]
           },
-          { "title":"Hired"}
+          { "title":"Hired",
+        "creator": ObjectId(newUser._id)}
         ]
         
         Column
           .create(columns)
           .then(columnsFromDB => {
 
-            console.log({ newUsers });
+            console.log({ newUser });
             console.log({ cardsFromDB });
             console.log({ columnsFromDB });
 

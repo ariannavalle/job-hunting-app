@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const ObjectId = require('mongodb').ObjectID;
 const Column = require('../models/Column.model');
 const Card = require('../models/Card.model');
 // ****************************************************************************************
@@ -20,12 +21,14 @@ router.post('/api/columns', (req, res, next) => {
 // ****************************************************************************************
 // Read - Get all
 // ****************************************************************************************
-
 router.get('/api/columns', (req, res, next) => {
-  Column.find()
+  if (req.user)
+  Column.find({ "creator": ObjectId(req.user._id)})
     .populate('cards')
     .then(columnsFromDB => res.status(200).json({ columns: columnsFromDB }))
     .catch(err => next(err));
+  else 
+    res.status(201).json({ message: 'Must log in first'} );
 });
 
 //****************************************************************************************

@@ -43,8 +43,8 @@ export default class App extends React.Component {
       .catch((err) => console.log(err));
   };
 
-  updateUser = user => {
-    this.setState({ currentUser: user });
+  updateUser = (user, columns) => {
+    this.setState({ currentUser: user, columns });
   };
 
   updateCardState = (cards,successMessage) => {
