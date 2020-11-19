@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Line from './Line'
 import Pie from './Pie'
 import Calendar from './Calendar'
+import Bar from './Bar'
 import { Link } from 'react-router-dom'
 import './Charting.css'
 
@@ -45,10 +46,27 @@ export default class Charting extends Component {
 
         const formatData = [{ data: lineData }]
 
+        // bar data
+        const barData = [
+            {
+                "salary": "Google",
+                "key": 57500,
+                "keyColor": "hsl(212, 70%, 50%)",
+            },
+            {
+                "salary": "Amazon",
+                "key": 75000,
+                "keyColor": "hsl(212, 70%, 50%)",
+            }, {
+                "salary": "Facebook",
+                "key": 100000,
+                "keyColor": "hsl(212, 70%, 50%)",
+            },
+        ]
         return (
             <div className="charting-container">
                 <center><h2>Graphs and Stats</h2></center>
-                <Link to='/' className="btn-primary" style={{marginLeft:"1rem", padding:".6rem 1.8rem"}}>Back</Link>
+                <Link to='/' className="btn-primary" style={{ marginLeft: "1rem", padding: ".6rem 1.8rem" }}>Back</Link>
                 <div className="charts">
                     <div className="chart-row">
                         <div className="chart">
@@ -64,8 +82,10 @@ export default class Charting extends Component {
                             <Line lineData={formatData} />
                         </div>
                         <div className="chart">
-                            <h3><b>Jobs Applied - List View</b></h3>
+                            <h3><b>Salary Estimate by Company</b></h3>
+                            <Bar barData={barData} />
 
+                            {/* <h3><b>Jobs Applied - List View</b></h3>
                             <div className="jobs-table" >
                                 {Object.values(this.props.cards).sort((a, b) => {
                                     a = a.title.toUpperCase();
@@ -78,7 +98,8 @@ export default class Charting extends Component {
                                         )
                                     }
                                 })}
-                            </div>
+                            </div> */}
+
                         </div>
                     </div>
                 </div>
