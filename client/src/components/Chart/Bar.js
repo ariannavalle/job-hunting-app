@@ -67,8 +67,8 @@ export default class Bar extends Component {
                     legendPosition: 'middle',
                     legendOffset: -60
                 }}
-                enableGridX={true}
-                enableGridY={false}
+                enableGridX={false}
+                enableGridY={true}
                 labelSkipWidth={12}
                 labelSkipHeight={12}
                 labelTextColor="#ffffff"
