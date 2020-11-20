@@ -66,7 +66,7 @@ export default class Charting extends Component {
         return (
             <div className="charting-container">
                 <center><h2>Graphs and Stats</h2></center>
-                <Link to='/' className="btn-primary" style={{ marginLeft: "1rem", padding: ".6rem 1.8rem" }}>Back</Link>
+                <Link to='/' className="btn-primary" style={{ marginLeft: "1rem", padding: ".6rem 1.8rem", textDecoration:"none" }}>Back</Link>
                 <div className="charts">
                     <div className="chart-row">
                         <div className="chart">

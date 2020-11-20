@@ -9,7 +9,7 @@ export default class Chart extends Component {
         return (
             <ResponsiveLine
                 data={lineData}
-                margin={{ top: 10, right: 50, bottom: 130, left: 50 }}
+                margin={{ top: 10, right: 40, bottom: 130, left: 70 }}
                 xScale={{ type: 'point' }}
                 yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
                 yFormat=" >-.2~f"
@@ -30,8 +30,8 @@ export default class Chart extends Component {
                     tickSize: 5,
                     tickPadding: 6,
                     tickRotation: 0,
-                    legend: 'Number of Jobs',
-                    legendOffset: -40,
+                    legend: 'Number of Applications',
+                    legendOffset: -55,
                     legendPosition: 'middle'
                 }}
                 enableGridX={false}

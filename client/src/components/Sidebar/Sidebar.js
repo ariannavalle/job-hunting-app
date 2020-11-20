@@ -34,10 +34,10 @@ export default class Sidebar extends Component {
                             </span>
                         </li>
 
-                        <li>
+                        <li className="rm-link">
                             <span>
                                 <GoGraph className="menu-icon" />
-                                <span className="nav-text"><Link to="/charting">Graphs and Statistics</Link></span>
+                                <span className="nav-text"><Link to="/charting" className="nav-text">Graphs and Statistics</Link></span>
                             </span>
                         </li>
 

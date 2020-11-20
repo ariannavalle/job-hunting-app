@@ -6,12 +6,20 @@
 }
 
 .card-tile-header {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 
 .card-tile-subheader {
     font-size: 1.1rem;
-    margin: 8px;
+    margin: 6px;
+}
+
+.card-tile-location{
+    text-align: right;
+    font-size: .8rem;
+    color: gray;
+    margin-right: 2px;
 }
 
 /* desktop */

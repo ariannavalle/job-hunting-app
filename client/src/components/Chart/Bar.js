@@ -9,7 +9,7 @@ export default class Bar extends Component {
                 data={barData}
                 keys={['key']}
                 indexBy="salary"
-                margin={{ top: -30, right: 100, bottom: 125, left: 130 }}
+                margin={{ top: -30, right: 80, bottom: 125, left: 130 }}
                 padding={0.3}
                 layout="horizontal"
                 valueScale={{ type: 'linear' }}
