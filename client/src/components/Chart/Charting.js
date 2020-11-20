@@ -47,22 +47,14 @@ export default class Charting extends Component {
         const formatData = [{ data: lineData }]
 
         // bar data
-        const barData = [
-            {
-                "salary": "Google",
-                "key": 57500,
+        const barData = Object.values(this.props.cards).map((card) => {
+            return {
+                "salary": card.company.length < 11? card.company : card.company.slice(0,11) + '...',
+                "key": card.salary ? card.salary : 0,
                 "keyColor": "hsl(212, 70%, 50%)",
-            },
-            {
-                "salary": "Amazon",
-                "key": 75000,
-                "keyColor": "hsl(212, 70%, 50%)",
-            }, {
-                "salary": "Facebook",
-                "key": 100000,
-                "keyColor": "hsl(212, 70%, 50%)",
-            },
-        ]
+            }
+        })
+
         return (
             <div className="charting-container">
                 <center><h2>Graphs and Stats</h2></center>
