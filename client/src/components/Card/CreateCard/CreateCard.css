@@ -34,3 +34,8 @@
 .modal-form {
   margin: 1rem;
 }
+
+.modal-form input {
+  padding: 6px 0 !important;
+  margin-bottom: .7rem;
+}

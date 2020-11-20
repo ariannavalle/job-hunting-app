@@ -1,6 +1,7 @@
 import React from 'react'
 import CARD_SERVICE from "../../../services/CardService"
-import { MdWork, MdLocationOn, MdWeb } from "react-icons/md";
+import { MdWork, MdLocationOn, MdWeb, MdPayment } from "react-icons/md";
+import { BiNote } from "react-icons/bi";
 import { BsBuilding, BsCalendar } from "react-icons/bs";
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import './CreateCard.css'
@@ -13,6 +14,7 @@ export default class CreateCard extends React.Component {
         date: '',
         note: '',
         location: '',
+        salary: 0,
         postingURL: '',
         modalIsOpen: false,
     }
@@ -24,10 +26,10 @@ export default class CreateCard extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const { title, company, date, note, location, postingURL } = this.state;
+        const { title, company, date, note, location, salary, postingURL } = this.state;
 
         // create card in db
-        CARD_SERVICE.createCard({ title, company, date, note, location, postingURL })
+        CARD_SERVICE.createCard({ title, company, date, note, location, salary, postingURL })
             .then((serverResponse) => {
                 const { card, successMessage } = serverResponse.data;
 
@@ -50,6 +52,7 @@ export default class CreateCard extends React.Component {
                     date: '',
                     note: '',
                     location: '',
+                    salary: 0,
                     postingURL: '',
                 })
 
@@ -58,7 +61,7 @@ export default class CreateCard extends React.Component {
     }
 
     render() {
-        const { title, company, date, note, location, postingURL, message } = this.state;
+        const { title, company, date, note, location, salary, postingURL, message } = this.state;
         return (
             <div>
 
@@ -69,50 +72,42 @@ export default class CreateCard extends React.Component {
 
                             <form onSubmit={this.handleSubmit} className="register-form" id="login-form">
 
-                                <div className="form-group">
-                                    <label htmlFor="title" className="icon"><MdWork /></label>
-                                    <input type="text" name="title" id="title" placeholder="Job Title *" required value={title}
-                                        onChange={this.handleChange} />
-                                </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="company" className="icon"><BsBuilding /></label>
-                                    <input type="text" name="company" id="company" placeholder="Company Name *" required value={company}
-                                        onChange={this.handleChange} />
-                                </div>
-
-                                <div className="form-group" style={{ display: "flex", justifyContent: "space-between", borderBottom:"1px solid #999" }}>
-                                    <div className="icon" style={{display:"flex", }}><BsCalendar style={{marginBottom:"0"}}/>
-                                        <div style={{padding: "0 15px",color:"#999"}}>Date Applied  </div></div>
-                                    <input style={{ border:"0", padding: "0", width: "40%" }} type="date" name="date" id="date" value={date}
-                                        onChange={this.handleChange} />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="location" className="icon"><MdLocationOn /></label>
-                                    <input type="text" name="location" id="location" placeholder="Location" value={location}
-                                        onChange={this.handleChange} />
-                                </div>
+                                <div className="details-header"><MdWork className="details-icon" />Job Title *</div>
+                                <input type="text" name="title" id="title" required value={title} onChange={this.handleChange} />
 
 
-                                <div className="form-group">
-                                    <label htmlFor="postingURL" className="icon"><MdWeb /></label>
-                                    <input type="text" name="postingURL" id="postingURL" placeholder="URL to job posting" value={postingURL}
-                                        onChange={this.handleChange} />
-                                </div>
+                                <div className="details-header"><BsBuilding className="details-icon" />Company Name *</div>
+                                <input type="text" name="company" id="company" required value={company} onChange={this.handleChange} />
 
-                                <div className="form-group" style={{ marginBottom: "0" }}>
-                                    <textarea rows="4" cols="51" name="note" id="note" placeholder="Include any notes here..." value={note}
-                                        onChange={this.handleChange} />
-                                </div>
+
+                                <div className="details-header"><MdLocationOn className="details-icon" />Location</div>
+                                <input type="text" name="location" id="location" value={location} onChange={this.handleChange} />
+
+
+                                <div className="details-header"><BsCalendar className="details-icon" />Date Applied</div>
+                                <input type="date" name="date" id="date" value={date} onChange={this.handleChange} />
+
+
+                                <div className="details-header"><MdPayment className="details-icon" />Estimated Salary (in thousands)</div>
+                                <input type="number" name="salary" id="salary" value={salary} onChange={this.handleChange} />
+
+
+                                <div className="details-header"><MdWeb className="details-icon" />URL to job posting</div>
+                                <input type="text" name="postingURL" id="postingURL" value={postingURL} onChange={this.handleChange} />
+
+                                <div className="details-header"><BiNote className="details-icon" />Notes</div>
+                                <textarea rows="4" cols="51" name="note" id="note" value={note} onChange={this.handleChange} />
+
 
                                 <div className="form-group form-button">
                                     <input type="submit" name="create" id="create" className="form-submit-btn" value="Create" />
                                 </div>
+
                             </form>
 
-                            {/* error message */}
-                            {message && <div style={{ color: "red", paddingTop: "1rem" }}> {message} </div>}
+                                {/* error message */}
+                                {message && <div style={{ color: "red", paddingTop: "1rem" }}> {message} </div>}
 
                         </div>
                     </ModalBody>

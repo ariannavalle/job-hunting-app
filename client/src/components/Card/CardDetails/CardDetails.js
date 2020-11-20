@@ -12,7 +12,7 @@ export default class CardDetails extends React.Component {
     }
 
     render() {
-        const { _id, title, company, location, date, note, postingURL } = this.props.card;
+        const { _id, title, company, salary, location, date, note, postingURL } = this.props.card;
         const { toggleDetailsModal, toggleEditModal, editCard, deleteCard, displayDetailsModal, displayEditModal, displayNotification, column, card } = this.props;
         return (
             <>
@@ -22,7 +22,7 @@ export default class CardDetails extends React.Component {
 
                         <ModalBody className="details-container">
 
-                            <div className="details-header"><BsBuilding className="details-icon" /> Company</div>
+                            <div className="details-header"><BsBuilding className="details-icon" /> Company Name</div>
                             <div className="details">{company}</div>
 
                             <div className="details-header"><MdLocationOn className="details-icon" /> Location</div>
@@ -30,6 +30,9 @@ export default class CardDetails extends React.Component {
 
                             <div className="details-header"><BsCalendar className="details-icon" /> Date Applied</div>
                             <div className="details">{date? date.slice(0,10): date}</div>
+
+                            <div className="details-header"><MdWeb className="details-icon" /> Estimated Salary (in thousands)</div>
+                            <div className="details">{salary ? `$${salary}k`:``}</div>
 
                             <div className="details-header"><MdWeb className="details-icon" /> URL to Job Posting</div>
                             <div className="details">{postingURL}</div>
@@ -62,7 +65,7 @@ export default class CardDetails extends React.Component {
                                 </div>
 
                                 <div className="details-header">
-                                    <BsBuilding className="details-icon" /> Company
+                                    <BsBuilding className="details-icon" /> Company Name
                             </div>
                                 <div className="edit-input">
                                     <input type="text" name="company" id="company" placeholder={company} required value={company} onChange={this.props.handleChange} />
@@ -80,6 +83,13 @@ export default class CardDetails extends React.Component {
                             </div>
                                 <div className="edit-input">
                                     <input type="date" name="date" id="date" value={date? date.slice(0,10): date} onChange={this.props.handleChange} />
+                                </div>
+
+                                <div className="details-header">
+                                    <MdWeb className="details-icon" /> Estimated Salary (in thousands)
+                            </div>
+                                <div className="edit-input">
+                                    <input type="text" name="salary" id="salary" placeholder={salary} value={salary} onChange={this.props.handleChange} />
                                 </div>
 
                                 <div className="details-header">

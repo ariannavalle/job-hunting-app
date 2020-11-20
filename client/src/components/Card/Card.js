@@ -7,7 +7,7 @@ import { BsBuilding } from "react-icons/bs";
 export default class card extends Component {
 
     render() {
-        const { _id, title, company, location, date, note } = this.props.card;
+        const { _id, title, company, location } = this.props.card;
         const { index } = this.props;
         return (
             <Draggable draggableId={_id} index={index}>

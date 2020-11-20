@@ -19,6 +19,9 @@ const cardSchema = new Schema(
     location: {
       type: String,
     },
+    salary: {
+      type: Number,
+    },
     postingURL: {
       type: String,
     },
