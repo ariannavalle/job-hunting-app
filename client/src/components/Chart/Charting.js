@@ -53,7 +53,7 @@ export default class Charting extends Component {
                 "key": card.salary ? card.salary : 0,
                 "keyColor": "hsl(212, 70%, 50%)",
             }
-        })
+        }).sort((a,b)=> b.key - a.key)
 
         return (
             <div className="charting-container">
@@ -74,24 +74,8 @@ export default class Charting extends Component {
                             <Line lineData={formatData} />
                         </div>
                         <div className="chart">
-                            <h3><b>Salary Estimate by Company</b></h3>
+                            <h3><b>Annual Salary Estimate by Company (in thousands)</b></h3>
                             <Bar barData={barData} />
-
-                            {/* <h3><b>Jobs Applied - List View</b></h3>
-                            <div className="jobs-table" >
-                                {Object.values(this.props.cards).sort((a, b) => {
-                                    a = a.title.toUpperCase();
-                                    b = b.title.toUpperCase();
-                                    return (a < b) ? -1 : (a > b) ? 1 : 0;
-                                }).map((card, i) => {
-                                    {
-                                        return (
-                                            <div key={i}><b>{i < 9 ? `0${i + 1}` : i + 1}. <span>{card.title}</span> - {card.company}</b> </div>
-                                        )
-                                    }
-                                })}
-                            </div> */}
-
                         </div>
                     </div>
                 </div>

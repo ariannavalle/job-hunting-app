@@ -9,9 +9,9 @@ export default class Bar extends Component {
                 data={barData}
                 keys={['key']}
                 indexBy="salary"
-                margin={{ top: -30, right: 80, bottom: 125, left: 130 }}
+                margin={{ top: 10, right: 80, bottom: 125, left: 80 }}
                 padding={0.3}
-                layout="horizontal"
+                layout="vertical"
                 valueScale={{ type: 'linear' }}
                 colors={{ scheme: 'category10' }}
                 defs={[
@@ -65,7 +65,7 @@ export default class Bar extends Component {
                     tickRotation: 0,
                     legend: 'Company',
                     legendPosition: 'middle',
-                    legendOffset: -100
+                    legendOffset: -60
                 }}
                 enableGridX={true}
                 enableGridY={false}
