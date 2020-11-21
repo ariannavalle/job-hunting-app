@@ -147,17 +147,6 @@ export default class Board extends Component {
                     <div style={{ color: "#777" }}>You have applied to <b>{this.getJobsApplied()}</b> {this.getMsg()} </div>
                 </div>
 
-                {/* test list view*/}
-                {/* {Object.values(cards).map((card, index) => {
-                    return (
-                        <div key={card._id}>
-                            {card.title}
-                        </div>
-                    )
-                })
-                } */}
-                {/* test */}
-
                 <CreateCard
                     columns={columns}
                     updateCardState={updateCardState}
@@ -167,7 +156,7 @@ export default class Board extends Component {
                     toggleCreateModal={this.toggleCreateModal}
                     successMessage={successMessage}
                     displayNotification={this.displayNotification}
-                    
+
                 />
 
                 <CardDetails
@@ -195,13 +184,14 @@ export default class Board extends Component {
                             return (
                                 <div key={column._id}>
                                     <Column
-                                        column={column} index={index}
-                                        toggleDetailsModal={this.toggleDetailsModal} 
+                                        column={column} 
+                                        index={index}
+                                        toggleDetailsModal={this.toggleDetailsModal}
                                         setCurrentCard={this.setCurrentCard}
                                         editColumn={editColumn}
                                         deleteColumn={deleteColumn}
                                         displayNotification={this.displayNotification}
-                                         />                                       
+                                    />
                                 </div>
                             );
                         })}

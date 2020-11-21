@@ -52,11 +52,8 @@ export default class CreateColumn extends React.Component {
                         <div className="modal-form">
                             <form onSubmit={this.handleSubmit} className="register-form" id="login-form">
 
-                                <div className="form-group">
-                                    <label htmlFor="title" className="icon"><FaColumns /></label>
-                                    <input type="text" name="title" id="title" placeholder="List Title *" required value={title}
-                                        onChange={this.handleChange} />
-                                </div>
+                                <div className="details-header"><FaColumns className="details-icon" />List Title *</div>
+                                <input type="text" name="title" id="title" required value={title} onChange={this.handleChange} />
 
                                 <div className="form-group form-button">
                                     <input type="submit" name="create" id="create" className="form-submit-btn" value="Create" />

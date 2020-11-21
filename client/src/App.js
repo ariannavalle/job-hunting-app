@@ -29,30 +29,26 @@ export default class App extends React.Component {
       AUTH_SERVICE.getAuthenticatedUser(),
     ])
       .then((responseFromServer) => {
-        const cards = responseFromServer[0].data?.cards?.reduce(
-          (a, v) => ({ ...a, [v._id]: v }),
-          {}
-        );
-        const columns = responseFromServer[1].data?.columns?.reduce(
-          (a, v) => ({ ...a, [v._id]: v }),
-          {}
-        );
-        const { user } = responseFromServer[2].data; //last
+        const cards = responseFromServer[0].data?.cards?.reduce(this.reducerCardColumns, {});
+        const columns = responseFromServer[1].data?.columns?.reduce(this.reducerCardColumns, {});
+        const { user } = responseFromServer[2].data;
         this.setState({ cards, columns, currentUser: user, loading: false });
       })
       .catch((err) => console.log(err));
   };
 
+  reducerCardColumns = (a, v) => ({ ...a, [v._id]: v });
+
   updateUser = (user, columns) => {
     this.setState({ currentUser: user, columns });
   };
 
-  updateCardState = (cards,successMessage) => {
+  updateCardState = (cards, successMessage) => {
     const updateCard = { ...this.state.cards, [cards._id]: cards };
-    this.setState({ cards: updateCard, successMessage});
+    this.setState({ cards: updateCard, successMessage });
   };
 
-  updateColumnState = (columns,successMessage) => {
+  updateColumnState = (columns, successMessage) => {
     const updateColumn = { ...this.state.columns, [columns._id]: columns };
     this.setState({ columns: updateColumn, successMessage });
   };
@@ -76,7 +72,6 @@ export default class App extends React.Component {
 
         COLUMN_SERVICE.getColumnDetails(columnId)
           .then((res) => {
-            console.log(res.data.column)
             this.setState({
               columns: { ...this.state.columns, [columnId]: res.data.column },
               successMessage,
@@ -86,7 +81,6 @@ export default class App extends React.Component {
       .catch(err => {
         console.log(err)
       });
-
   }
 
   deleteCard = (id) => {
@@ -115,34 +109,32 @@ export default class App extends React.Component {
     let updatedColumn = this.state.columns[id]
     updatedColumn.title = data
     COLUMN_SERVICE.updateColumn(id, updatedColumn)
-    .then((res)=>{
-      const { successMessage } = res.data;
-      COLUMN_SERVICE.getColumns()
-      .then((response) => {
-        this.setState({
-          columns: response.data.columns,
-          successMessage,
-        });
+      .then((res) => {
+        const { successMessage } = res.data;
+        COLUMN_SERVICE.getColumns()
+          .then((response) => {
+            this.setState({
+              columns: response.data.columns.reduce(this.reducerCardColumns, {}),
+              successMessage,
+            });
+          })
       })
-    })
   }
 
   deleteColumn = (id) => {
     COLUMN_SERVICE.deleteColumn(id)
-    .then((response)=>{
-      const { successMessage } = response.data;
-      const columns = Object.values(this.state.columns).filter(column => column._id !== id)
-      this.setState({
-        columns,
-        successMessage,
-      }); 
-    })
+      .then((response) => {
+        const { successMessage } = response.data;
+        const columns = { ...this.state.columns };
+        delete columns[id];
+        this.setState({
+          columns,
+          successMessage,
+        });
+      })
   }
 
   render() {
-    console.log('user: ', this.state.currentUser);
-    console.log('cards: ', this.state.cards);
-    console.log('columns: ', this.state.columns);
     return (
       <div className='App'>
         <BrowserRouter>
@@ -152,7 +144,7 @@ export default class App extends React.Component {
 
             <Route path='/signup' render={props => <Signup {...props} onUserChange={this.updateUser} />} />
             <Route path='/login' render={props => <Login {...props} onUserChange={this.updateUser} />} />
-            <Route path='/charting' render={props => <Charting {...props} cards={this.state.cards} columns={this.state.columns}/>} />
+            <Route path='/charting' render={props => <Charting {...props} cards={this.state.cards} columns={this.state.columns} />} />
 
             {/* if user is logged in, render the board component at the root path*/}
             {!this.state.loading
