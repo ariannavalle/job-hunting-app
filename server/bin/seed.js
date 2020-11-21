@@ -41,7 +41,7 @@ const cards = [
 
   { "title": "Security Solutions - Software Engineer", "company": "Elastic", "date": "2020-11-18",  "postingURL" : "https://www.linkedin.com/jobs/view/2238559797", "salary": 82, "note": `Elastic is an open source search company that powers enterprise search, observability, and security solutions built on one technology stack that can be deployed anywhere. From finding documents to monitoring infrastructure to hunting for threats, Elastic makes data usable in real time and at scale.`, "location": "Miami, FL, US" },
 
-  { "title": "Software Development Engineer in Test (SDET)", "company": "Wayfair", "date": "2020-11-18",  "postingURL" : "https://www.linkedin.com/jobs/view/2232774485", "salary": 100, "note": `Seniority Level - Entry level.
+  { "title": "Software Development Engineer in Test (SDET)", "company": "Wayfair", "date": "2020-11-20",  "postingURL" : "https://www.linkedin.com/jobs/view/2232774485", "salary": 100, "note": `Seniority Level - Entry level.
   Industry - Marketing & Advertising  Computer Software  Internet.
   Employment Type - Full-time.
   Job Functions - Engineering`, "location": "Boston, MA, US" },
@@ -51,6 +51,14 @@ const cards = [
   { "title": "Test Automation Architect", "company": "Salesforce", "date": "2020-11-20",  "postingURL" : "https://www.linkedin.com/jobs/view/2265966133", "salary": 118, "note": "They are looking for a veteran Quality Engineer with a specialization in automated testing.", "location": "Miami, FL, US" },
 
   { "title": "UI Developer", "company": "eTeam", "date": "2020-11-18",  "postingURL" : "https://www.linkedin.com/jobs/view/2226146790", "salary": 45, "note": "Bachelor's degree or foreign equivalent required.", "location": "Tequesta, FL, US" },
+
+  { "title": "QA Engineer", "company": "Apple", "date": "2020-10-28",  "postingURL" : "https://www.linkedin.com/jobs/view/2288698450", "salary": 77, "note": "Behavioral Interview at 6pm on Thursday", "location": "Palo Alto, CA, US" },
+
+  { "title": "Intern Engineer", "company": "VMware", "date": "2020-10-25",  "postingURL" : "", "salary": 35, "note": "Internship", "location": "Palo Alto, CA, US" },
+
+  { "title": "Software Engineer", "company": "Walmart", "date": "",  "postingURL" : "2020-10-22", "salary": 101, "note": "I shop here.", "location": "Sunnyvale, CA, US" },
+
+  { "title": "Jr Frontend Engineer", "company": "Pearson", "date": "2020-10-30",  "postingURL" : "", "salary": 90, "note": "", "location": "Palo Alto, CA, US" },
 
   // { "title": "", "company": "", "date": "",  "postingURL" : "", "salary": , "note": "", "location": "" },
 ]
@@ -85,12 +93,12 @@ User
           { "title":"Interviewing",
           "creator": ObjectId(newUser._id),
             "cards": 
-            [ cardsFromDB[7]._id]
+            [ cardsFromDB[7]._id, cardsFromDB[8]._id, cardsFromDB[9]._id]
           },
           { "title":"Rejected",
           "creator": ObjectId(newUser._id),
           "cards": 
-          [ cardsFromDB[8]._id, cardsFromDB[9]._id]
+          [ cardsFromDB[10]._id, cardsFromDB[11]._id, cardsFromDB[12]._id]
           },
           { "title":"Hired",
         "creator": ObjectId(newUser._id)}
