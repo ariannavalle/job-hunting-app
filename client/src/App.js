@@ -144,7 +144,7 @@ export default class App extends React.Component {
 
             <Route path='/signup' render={props => <Signup {...props} onUserChange={this.updateUser} />} />
             <Route path='/login' render={props => <Login {...props} onUserChange={this.updateUser} />} />
-            <ProtectedRoute path='/charting' render={props => <Charting {...props} cards={this.state.cards} columns={this.state.columns} />} />
+            <Route path='/charting' render={props => <Charting {...props} cards={this.state.cards} columns={this.state.columns} />} />
 
             {/* if user is logged in, render the board component at the root path*/}
             {!this.state.loading
