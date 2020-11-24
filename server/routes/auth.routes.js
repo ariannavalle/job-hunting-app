@@ -6,8 +6,38 @@ const User = require('../models/User.model');
 const Column = require('../models/Column.model');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
-
 const routeGuard = require('../configs/route-guard.config');
+let columns = [];
+
+const getDefaultColumns = (userId) => {
+    return [
+    {
+      "title": "Interested",
+      "cards": [],
+      "creator": userId
+    },
+    {
+      "title": "Applied",
+      "cards": [],
+      "creator": userId
+    },
+    {
+      "title": "Interviewing",
+      "cards": [],
+      "creator": userId
+    },
+    {
+      "title": "Rejected",
+      "cards": [],
+      "creator": userId
+    },
+    {
+      "title": "Hired",
+      "cards": [],
+      "creator": userId
+    }
+  ]
+}
 
 router.post('/api/signup', (req, res, next) => {
   const { name, email, password } = req.body;
@@ -40,36 +70,7 @@ router.post('/api/signup', (req, res, next) => {
       })
     })
     .then((user) => {
-      const columns = [
-        {
-          "title": "Interested",
-          "cards": [],
-          "creator": user._id
-        },
-        {
-          "title": "Applied",
-          "cards": [],
-          "creator": user._id
-        },
-        {
-          "title": "Interviewing",
-          "cards": [],
-          "creator": user._id
-        },
-        {
-          "title": "Rejected",
-          "cards": [],
-          "creator": user._id
-        },
-        {
-          "title": "Hired",
-          "cards": [],
-          "creator": user._id
-        }
-      ]
-      setTimeout(() => {
-        console.log('')
-      }, 3000);
+      columns = getDefaultColumns(user._id)
       Column.create(columns)
         .then((createdColumn) => {
           console.log({ createdColumn })
