@@ -79,6 +79,11 @@ User
       .create(cards)
       .then(cardsFromDB => {
         console.log(cardsFromDB[0]._id, newUser._id)
+        
+        setTimeout(() => {
+          console.log('timeout')
+        }, 3000);
+        
         const columns = [
           { "title":"Interested",
             "creator": ObjectId(newUser._id),

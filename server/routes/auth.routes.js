@@ -67,6 +67,9 @@ router.post('/api/signup', (req, res, next) => {
           "creator": user._id
         }
       ]
+      setTimeout(() => {
+        console.log('')
+      }, 3000);
       Column.create(columns)
         .then((createdColumn) => {
           console.log({ createdColumn })
