@@ -111,8 +111,8 @@ export default class Board extends Component {
 
     getJobsApplied = () => {
         const { cards } = this.props;
-        const jobsApplied = Object.values(cards).filter((card) => card.date)
-        return jobsApplied.length
+        const jobsApplied = cards && Object.values(cards).filter((card) => card.date)
+        return jobsApplied?.length
     }
 
     getMsg = () => {

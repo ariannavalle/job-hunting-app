@@ -25,6 +25,7 @@ const cardSchema = new Schema(
     postingURL: {
       type: String,
     },
+    creator: { type: Schema.Types.ObjectId, ref: 'User' }
   },
   {
     timestamps: true

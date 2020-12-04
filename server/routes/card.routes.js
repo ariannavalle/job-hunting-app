@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const ObjectId = require('mongodb').ObjectID;
 
 const Card = require('../models/Card.model');
 
@@ -10,7 +11,16 @@ const Card = require('../models/Card.model');
 // <form action="/cards" method="POST">
 router.post('/api/cards', (req, res, next) => {
   // console.log(req.body);
-  Card.create(req.body)
+  Card.create({
+    title: req.body.title,
+    company: req.body.company,
+    date: req.body.date,
+    note: req.body.note,
+    location: req.body.location,
+    salary: req.body.salary,
+    postingURL: req.body.postingURL,
+    creator: req.user._id
+  })
     .then(cardDoc => res.status(200).json({ card: cardDoc, successMessage: 'Successfully created!' }))
     .catch(err => res.json({ failureMessage: 'Failed to create card.' }));
 });
@@ -20,9 +30,12 @@ router.post('/api/cards', (req, res, next) => {
 // ****************************************************************************************
 
 router.get('/api/cards', (req, res, next) => {
-  Card.find()
+  if (req.user)
+  Card.find({ "creator": ObjectId(req.user._id)})
     .then(cardsFromDB => res.status(200).json({ cards: cardsFromDB }))
     .catch(err => next(err));
+  else 
+    res.status(201).json({ message: 'Must log in first'} );
 });
 
 // ****************************************************************************************
